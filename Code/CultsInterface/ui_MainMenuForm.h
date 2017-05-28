@@ -73,7 +73,7 @@ public:
         font.setUnderline(true);
         font.setWeight(75);
         TitleLabel->setFont(font);
-        TitleLabel->setStyleSheet(QString::fromUtf8("color : rgb(0, 0, 0)"));
+        TitleLabel->setStyleSheet(QString::fromUtf8("color : rgb(255, 255, 255)"));
         TitleLabel->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
 
         verticalLayout->addWidget(TitleLabel);

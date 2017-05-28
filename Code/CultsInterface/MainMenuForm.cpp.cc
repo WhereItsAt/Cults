@@ -15,26 +15,31 @@
 #include <QConicalGradient>
 #include <QPalette>
 #include <QColor>
+#include <QBrush>
+#include <QStatusBar>
+#include <QRadialGradient>
 
 MainMenuForm::MainMenuForm() {
     widget.setupUi(this);
     QPushButton *Exit = this->findChild<QPushButton*>("ExitButton");
     connect(Exit, SIGNAL(clicked()), this, SLOT(QuitApp()));
+    statusBar()->hide();
     
-    QWidget *BGGradient = new QWidget(this->findChild<QWidget*>("BackgroundImage"));
+    QWidget *BGGradient = new QWidget(this);
     BGGradient->setFixedHeight(this->height());
     BGGradient->setFixedWidth(this->width());
-    BGGradient->lower();
-    QConicalGradient * grad = new QConicalGradient(QPointF((this->height()/2),(this->width()/2)),90);
-    grad->setColorAt(0, QColor(7,16,61));
-    grad->setColorAt(0.5, QColor(21,33,96));
-    grad->setColorAt(1, QColor(54,71,155));
-    QPalette pal = QApplication::palette();
-    pal.setBrush(QPalette::Base, *grad);
-    BGGradient->setPalette(pal);
-    BGGradient->setEnabled(true);
-    BGGradient->setVisible(true);
-    BGGradient->setShown(true);
+    //BGGradient->lower();
+    //QConicalGradient grad(QPointF((this->height()/2),(this->width()/2)),90);
+    //QConicalGradient grad(QPointF(600,300),180);
+    QRadialGradient grad(QPointF((this->width()/2),(this->height()/2)),this->width());
+    grad.setColorAt(0, QColor(7,16,61));
+    grad.setColorAt(0.5, QColor(21,33,96));
+    grad.setColorAt(1, QColor(54,71,155));
+    QBrush brush(grad);
+    
+    QPalette pal;
+    pal.setBrush(QPalette::Window, brush);
+    this->setPalette(pal);
 }
 
 MainMenuForm::~MainMenuForm() {
