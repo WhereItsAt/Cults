@@ -13,6 +13,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QFrame>
 #include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
@@ -30,7 +31,6 @@ class Ui_MainMenuForm
 public:
     QWidget *centralwidget;
     QGridLayout *gridLayout;
-    QGridLayout *gridLayout1;
     QVBoxLayout *verticalLayout;
     QLabel *TitleLabel;
     QLabel *BackgroundImage;
@@ -38,6 +38,7 @@ public:
     QPushButton *LoadButton;
     QPushButton *OptionsButton;
     QPushButton *ExitButton;
+    QFrame *frame;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -61,8 +62,6 @@ public:
         centralwidget->setMaximumSize(QSize(1920, 1080));
         gridLayout = new QGridLayout(centralwidget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        gridLayout1 = new QGridLayout();
-        gridLayout1->setObjectName(QString::fromUtf8("gridLayout1"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         TitleLabel = new QLabel(centralwidget);
@@ -93,33 +92,57 @@ public:
 
         NewButton = new QPushButton(centralwidget);
         NewButton->setObjectName(QString::fromUtf8("NewButton"));
-        NewButton->setMaximumSize(QSize(150, 16777215));
+        NewButton->setMinimumSize(QSize(102, 102));
+        NewButton->setMaximumSize(QSize(102, 102));
+        NewButton->setCursor(QCursor(Qt::CrossCursor));
+        NewButton->setStyleSheet(QString::fromUtf8(" background-color: white;\n"
+" border-style: solid;\n"
+" border-width:1px;\n"
+" border-radius:50px;\n"
+" border-color: red;\n"
+" max-width:100px;\n"
+" max-height:100px;\n"
+" min-width:100px;\n"
+" min-height:100px;"));
+        NewButton->setAutoDefault(false);
+        NewButton->setDefault(false);
+        NewButton->setFlat(false);
 
         verticalLayout->addWidget(NewButton, 0, Qt::AlignHCenter);
 
         LoadButton = new QPushButton(centralwidget);
         LoadButton->setObjectName(QString::fromUtf8("LoadButton"));
-        LoadButton->setMaximumSize(QSize(150, 16777215));
+        LoadButton->setMinimumSize(QSize(300, 40));
+        LoadButton->setMaximumSize(QSize(600, 150));
+        LoadButton->setCursor(QCursor(Qt::CrossCursor));
 
         verticalLayout->addWidget(LoadButton, 0, Qt::AlignHCenter);
 
         OptionsButton = new QPushButton(centralwidget);
         OptionsButton->setObjectName(QString::fromUtf8("OptionsButton"));
-        OptionsButton->setMaximumSize(QSize(150, 16777215));
+        OptionsButton->setMinimumSize(QSize(300, 40));
+        OptionsButton->setMaximumSize(QSize(600, 150));
+        OptionsButton->setCursor(QCursor(Qt::CrossCursor));
 
         verticalLayout->addWidget(OptionsButton, 0, Qt::AlignHCenter);
 
         ExitButton = new QPushButton(centralwidget);
         ExitButton->setObjectName(QString::fromUtf8("ExitButton"));
-        ExitButton->setMaximumSize(QSize(150, 16777215));
+        ExitButton->setMinimumSize(QSize(300, 40));
+        ExitButton->setMaximumSize(QSize(600, 150));
+        ExitButton->setCursor(QCursor(Qt::CrossCursor));
 
         verticalLayout->addWidget(ExitButton, 0, Qt::AlignHCenter);
 
+        frame = new QFrame(centralwidget);
+        frame->setObjectName(QString::fromUtf8("frame"));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
 
-        gridLayout1->addLayout(verticalLayout, 0, 0, 1, 1);
+        verticalLayout->addWidget(frame);
 
 
-        gridLayout->addLayout(gridLayout1, 0, 0, 1, 1);
+        gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
 
         MainMenuForm->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainMenuForm);

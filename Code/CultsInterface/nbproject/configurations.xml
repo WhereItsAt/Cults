@@ -4,7 +4,42 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Assett.h</itemPath>
+      <itemPath>Base.h</itemPath>
+      <itemPath>Buisness.h</itemPath>
+      <itemPath>Bureaucrat.h</itemPath>
+      <itemPath>CEO.h</itemPath>
+      <itemPath>CImg.h</itemPath>
+      <itemPath>Commander.h</itemPath>
+      <itemPath>Country.h</itemPath>
+      <itemPath>Cult.h</itemPath>
+      <itemPath>Empire.h</itemPath>
+      <itemPath>Evangelist.h</itemPath>
+      <itemPath>FederalGovernment.h</itemPath>
+      <itemPath>FederalLeader.h</itemPath>
+      <itemPath>FollowerManager.h</itemPath>
+      <itemPath>GoverningBody.h</itemPath>
+      <itemPath>Government.h</itemPath>
+      <itemPath>GovernmentLeader.h</itemPath>
+      <itemPath>Individual.h</itemPath>
+      <itemPath>Leader.h</itemPath>
+      <itemPath>LocalGovernment.h</itemPath>
+      <itemPath>LocalLeader.h</itemPath>
       <itemPath>MainMenuForm.h</itemPath>
+      <itemPath>Manager.h</itemPath>
+      <itemPath>Policy.h</itemPath>
+      <itemPath>PoliticalParty.h</itemPath>
+      <itemPath>Politician.h</itemPath>
+      <itemPath>Priest.h</itemPath>
+      <itemPath>Religion.h</itemPath>
+      <itemPath>ResourceManager.h</itemPath>
+      <itemPath>Specialist.h</itemPath>
+      <itemPath>Spy.h</itemPath>
+      <itemPath>StatusManager.h</itemPath>
+      <itemPath>Suburb.h</itemPath>
+      <itemPath>UniqueFollower.h</itemPath>
+      <itemPath>Zone.h</itemPath>
+      <itemPath>ZoneManager.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,7 +49,41 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Assett.cpp</itemPath>
+      <itemPath>Base.cpp</itemPath>
+      <itemPath>Buisness.cpp</itemPath>
+      <itemPath>Bureaucrat.cpp</itemPath>
+      <itemPath>CEO.cpp</itemPath>
+      <itemPath>Commander.cpp</itemPath>
+      <itemPath>Country.cpp</itemPath>
+      <itemPath>Cult.cpp</itemPath>
+      <itemPath>Empire.cpp</itemPath>
+      <itemPath>Evangelist.cpp</itemPath>
+      <itemPath>FederalGovernment.cpp</itemPath>
+      <itemPath>FederalLeader.cpp</itemPath>
+      <itemPath>FollowerManager.cpp</itemPath>
+      <itemPath>GoverningBody.cpp</itemPath>
+      <itemPath>Government.cpp</itemPath>
+      <itemPath>GovernmentLeader.cpp</itemPath>
+      <itemPath>Individual.cpp</itemPath>
+      <itemPath>Leader.cpp</itemPath>
+      <itemPath>LocalGovernment.cpp</itemPath>
+      <itemPath>LocalLeader.cpp</itemPath>
       <itemPath>MainMenuForm.cpp.cc</itemPath>
+      <itemPath>Manager.cpp</itemPath>
+      <itemPath>Policy.cpp</itemPath>
+      <itemPath>PoliticalParty.cpp</itemPath>
+      <itemPath>Politician.cpp</itemPath>
+      <itemPath>Priest.cpp</itemPath>
+      <itemPath>Religion.cpp</itemPath>
+      <itemPath>ResourceManager.cpp</itemPath>
+      <itemPath>Specialist.cpp</itemPath>
+      <itemPath>Spy.cpp</itemPath>
+      <itemPath>StatusManager.cpp</itemPath>
+      <itemPath>Suburb.cpp</itemPath>
+      <itemPath>UniqueFollower.cpp</itemPath>
+      <itemPath>Zone.cpp</itemPath>
+      <itemPath>ZoneManager.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -45,11 +114,149 @@
       </qt>
       <compileType>
       </compileType>
+      <item path="Assett.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Assett.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Base.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Base.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Buisness.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Buisness.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Bureaucrat.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bureaucrat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CEO.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CEO.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CImg.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Commander.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Commander.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Country.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Country.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Cult.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Cult.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Empire.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Empire.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Evangelist.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Evangelist.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FederalGovernment.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FederalGovernment.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FederalLeader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FederalLeader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FollowerManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FollowerManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GoverningBody.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GoverningBody.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Government.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Government.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GovernmentLeader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GovernmentLeader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Individual.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Individual.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Leader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Leader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LocalGovernment.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LocalGovernment.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LocalLeader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LocalLeader.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="MainMenuForm.cpp.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MainMenuForm.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MainMenuForm.ui" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Manager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Manager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Policy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Policy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PoliticalParty.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PoliticalParty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Politician.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Politician.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Priest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Priest.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Religion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Religion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ResourceManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ResourceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Specialist.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Specialist.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Spy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Spy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="StatusManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="StatusManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Suburb.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Suburb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UniqueFollower.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="UniqueFollower.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Zone.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Zone.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ZoneManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ZoneManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -78,11 +285,149 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Assett.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Assett.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Base.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Base.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Buisness.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Buisness.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Bureaucrat.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bureaucrat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CEO.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CEO.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CImg.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Commander.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Commander.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Country.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Country.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Cult.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Cult.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Empire.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Empire.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Evangelist.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Evangelist.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FederalGovernment.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FederalGovernment.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FederalLeader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FederalLeader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FollowerManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FollowerManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GoverningBody.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GoverningBody.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Government.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Government.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GovernmentLeader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GovernmentLeader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Individual.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Individual.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Leader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Leader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LocalGovernment.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LocalGovernment.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LocalLeader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LocalLeader.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="MainMenuForm.cpp.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MainMenuForm.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MainMenuForm.ui" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Manager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Manager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Policy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Policy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PoliticalParty.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PoliticalParty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Politician.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Politician.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Priest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Priest.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Religion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Religion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ResourceManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ResourceManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Specialist.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Specialist.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Spy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Spy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="StatusManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="StatusManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Suburb.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Suburb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UniqueFollower.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="UniqueFollower.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Zone.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Zone.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ZoneManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ZoneManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -31,7 +31,7 @@ MainMenuForm::MainMenuForm() {
     //BGGradient->lower();
     //QConicalGradient grad(QPointF((this->height()/2),(this->width()/2)),90);
     //QConicalGradient grad(QPointF(600,300),180);
-    QRadialGradient grad(QPointF((this->width()/2),(this->height()/2)),this->width());
+    QRadialGradient grad(QPointF((this->width()/2),(this->height()/2)),this->height());
     grad.setColorAt(0, QColor(7,16,61));
     grad.setColorAt(0.5, QColor(21,33,96));
     grad.setColorAt(1, QColor(54,71,155));
