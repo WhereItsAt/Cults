@@ -14,11 +14,29 @@
 #ifndef BASE_H
 #define BASE_H
 
-class Base {
+#include <list>
+#include "Assett.h"
+#include "Zone.h"
+//#include "Building.h"
+
+class Building;
+
+class Base: public Assett {
 public:
     Base();
     Base(const Base& orig);
     virtual ~Base();
+    virtual void upgrade() = 0;
+    Zone* getZone();
+    void setZone(Zone* home);
+    void collectFromBuildings();
+    void addBuilding(Building* build);
+    void removeBuilding(Building* build);
+    void replaceBuilding(Building* build);
+    std::list<Building*> getBuildings();
+protected:
+     Zone* homeZone;
+     std::list<Building*> buildings;
 private:
 
 };

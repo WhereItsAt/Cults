@@ -23,7 +23,7 @@ public:
     virtual ~Manager();
     virtual void relinquish(GoverningBody* enemy) = 0;
 protected:
-    GoverningBody gBody;
+    GoverningBody* gBody;
 private:
 
 };

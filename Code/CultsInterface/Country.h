@@ -14,13 +14,15 @@
 #ifndef COUNTRY_H
 #define COUNTRY_H
 
-class Country {
+#include "Zone.h"
+
+class Country: public Zone {
 public:
     Country();
     Country(const Country& orig);
     virtual ~Country();
 private:
-
+    
 };
 
 #endif /* COUNTRY_H */

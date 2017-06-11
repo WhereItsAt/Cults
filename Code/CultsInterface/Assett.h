@@ -14,11 +14,17 @@
 #ifndef ASSETT_H
 #define ASSETT_H
 
+#include "GoverningBody.h"
+
 class Assett {
 public:
     Assett();
     Assett(const Assett& orig);
     virtual ~Assett();
+    GoverningBody* getOwner();
+    void setOwner(GoverningBody* gbod);
+protected:
+    GoverningBody* owner;
 private:
 
 };

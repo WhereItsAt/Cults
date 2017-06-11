@@ -14,11 +14,32 @@
 #ifndef ZONE_H
 #define ZONE_H
 
+#include <map>
+#include <list>
+#include "GoverningBody.h"
+
 class Zone {
 public:
     Zone();
     Zone(const Zone& orig);
     virtual ~Zone();
+    GoverningBody* getCurrentRuler();
+    void setCurrentRuler(GoverningBody* gbody);
+    Zone* getParentZone();
+    void setParentZone(Zone* parent);
+    std::list<Zone*> getChildZones();
+    void addChildZone(Zone* child);
+    Zone* removeChildZone(Zone* child);
+    int getPopulation();
+    void setPopulation(int pop);
+    int getFollowerCount(GoverningBody* gbod);
+    int transferFollowers(GoverningBody* recruiter, GoverningBody* loser, int amount);
+protected: 
+    GoverningBody* currentRuler;
+    int population;
+    std::map<GoverningBody*,int> cultFollowers;
+    Zone* parentZone;
+    std::list<Zone*> childZones;
 private:
 
 };

@@ -14,13 +14,20 @@
 #ifndef SUBURB_H
 #define SUBURB_H
 
-class Suburb {
+#include <list>
+#include "Zone.h"
+#include "Assett.h"
+
+class Suburb: public Zone {
 public:
     Suburb();
     Suburb(const Suburb& orig);
     virtual ~Suburb();
+    std::list<Assett*> getAssetts();
+    void addAssett(Assett* ass);
+    Assett* removeAssett(Assett* ass);
 private:
-
+    std::list<Assett*> assetts;
 };
 
 #endif /* SUBURB_H */

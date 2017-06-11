@@ -14,13 +14,15 @@
 #ifndef EMPIRE_H
 #define EMPIRE_H
 
-class Empire {
+#include "Zone.h"
+
+class Empire: public Zone {
 public:
     Empire();
     Empire(const Empire& orig);
     virtual ~Empire();
 private:
-
+    
 };
 
 #endif /* EMPIRE_H */

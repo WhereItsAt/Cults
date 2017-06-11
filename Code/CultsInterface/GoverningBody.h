@@ -16,18 +16,20 @@
 
 #include <string>
 #include "CImg.h"
-//#include "Cult.h"
-//#include "Government.h"
 #include "Leader.h"
-#include "StatusManager.h"
-#include "ResourceManager.h"
-#include "ZoneManager.h"
-#include "FollowerManager.h"
-#include "Zone.h"
-#include "Specialist.h"
+//#include "Zone.h"
+//#include "Specialist.h"
 #include "Policy.h"
-#include "Assett.h"
+//#include "Assett.h"
 #include "Individual.h"
+
+class FollowerManager;
+class ZoneManager;
+class StatusManager;
+class ResourceManager;
+class Zone;
+class Specialist;
+class Assett;
 
 enum TierFlag {
     Suburban,

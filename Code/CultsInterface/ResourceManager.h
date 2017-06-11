@@ -16,13 +16,14 @@
 
 #include <list>
 #include "Manager.h"
+#include "Assett.h"
 
 class ResourceManager: public Manager {
 public:
     ResourceManager();
     ResourceManager(const ResourceManager& orig);
     virtual ~ResourceManager();
-    void relinquish(GoverningBody* enemy);
+    //virtual void relinquish(GoverningBody* enemy);
     int getInfluence();
     int getMoney();
     int getThreatLevel();
@@ -38,7 +39,7 @@ private:
     int money;
     int threatLevel;
     int stability;
-    list<Assett> assetts;
+    std::list<Assett*> assetts;
 };
 
 #endif /* RESOURCEMANAGER_H */
