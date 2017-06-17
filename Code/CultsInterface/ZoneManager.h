@@ -34,23 +34,29 @@ public:
     ZoneManager();
     ZoneManager(const ZoneManager& orig);
     virtual ~ZoneManager();
-    //virtual void relinquish(GoverningBody* enemy);
+    virtual void relinquish(GoverningBody* enemy);
     void addSuburb(Suburb* burb);
     void addRegion(RegionalZone* rz);
     void addCountry(Country* cnt);
     void addCity(myCity* city);
+    void setEmpire(Empire* emp);
+    void setHomeLand(Zone* home);
+    void setBase(Base* hq);
     Suburb* removeSuburb(Suburb* burb);
     RegionalZone* removeRegion(RegionalZone* rz);
     Country* removeCountry(Country* cnt);
     myCity* removeCity(myCity* city);
+    Empire* getEmpire();
+    Zone* getHomeLand();
+    Base* getHQ();
 private:
-    Empire* empire;
-    std::list<Suburb*> suburbs;
-    std::list<RegionalZone*> regions;
-    std::list<Country*> countries;
-    std::list<myCity*> cities;
-    Zone* homeland;
-    Base* hq;
+    Empire* m_empire;
+    std::list<Suburb*> m_suburbs;
+    std::list<RegionalZone*> m_regions;
+    std::list<Country*> m_countries;
+    std::list<myCity*> m_cities;
+    Zone* m_homeland;
+    Base* m_hq;
 };
 
 #endif /* ZONEMANAGER_H */

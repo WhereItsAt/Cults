@@ -22,3 +22,6 @@ Country::Country(const Country& orig) {
 Country::~Country() {
 }
 
+std::string Country::getType() {
+    return "country";
+}

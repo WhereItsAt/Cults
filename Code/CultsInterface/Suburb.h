@@ -26,8 +26,9 @@ public:
     std::list<Assett*> getAssetts();
     void addAssett(Assett* ass);
     Assett* removeAssett(Assett* ass);
+    virtual std::string getType();
 private:
-    std::list<Assett*> assetts;
+    std::list<Assett*> m_assetts;
 };
 
 #endif /* SUBURB_H */

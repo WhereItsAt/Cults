@@ -22,3 +22,30 @@ Specialist::Specialist(const Specialist& orig) {
 Specialist::~Specialist() {
 }
 
+void Specialist::contribute() {
+    //this is where the specialist
+}
+
+void Specialist::die(GoverningBody* murderer) {
+
+}
+
+int Specialist::getLevel() {
+
+}
+
+Zone* Specialist::getLocation() {
+
+}
+
+void Specialist::setLevel(int newLevel) {
+
+}
+
+void Specialist::setLocation(Zone* newLocation) {
+
+}
+
+void Specialist::upgrade() {
+
+}

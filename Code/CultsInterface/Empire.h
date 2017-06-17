@@ -21,6 +21,7 @@ public:
     Empire();
     Empire(const Empire& orig);
     virtual ~Empire();
+    virtual std::string getType();
 private:
     
 };

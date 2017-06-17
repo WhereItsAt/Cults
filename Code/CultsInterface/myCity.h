@@ -21,6 +21,7 @@ public:
     myCity();
     myCity(const myCity& orig);
     virtual ~myCity();
+    virtual std::string getType();
 private:
 
 };

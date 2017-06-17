@@ -22,3 +22,6 @@ Empire::Empire(const Empire& orig) {
 Empire::~Empire() {
 }
 
+std::string Empire::getType() {
+    return "empire";
+}

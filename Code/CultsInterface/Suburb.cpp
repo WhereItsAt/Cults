@@ -22,3 +22,19 @@ Suburb::Suburb(const Suburb& orig) {
 Suburb::~Suburb() {
 }
 
+std::list<Assett*> Suburb::getAssetts() {
+    return m_assetts;
+}
+
+void Suburb::addAssett(Assett* ass) {
+    m_assetts.push_back(ass);
+}
+
+Assett* Suburb::removeAssett(Assett* ass) {
+    m_assetts.remove(ass);
+    return ass;
+}
+
+std::string Suburb::getType() {
+    return "suburb";
+}

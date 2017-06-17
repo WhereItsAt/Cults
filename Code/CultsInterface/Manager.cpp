@@ -22,3 +22,10 @@ Manager::Manager(const Manager& orig) {
 Manager::~Manager() {
 }
 
+GoverningBody* Manager::getGBody() {
+    return m_gBody;
+}
+
+void Manager::setGBody(GoverningBody* gbod) {
+    m_gBody = gbod;
+}

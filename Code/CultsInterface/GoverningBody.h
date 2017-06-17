@@ -54,25 +54,25 @@ public:
     std::string getName();
     void setName(std::string name);
     Leader* getLeader();
-    void setLeader(Leader lead);
+    void setLeader(Leader* lead);
     void consume(GoverningBody* enemy);
     void addZone(Zone* newZone);
-    Zone removeZone(Zone* oldZone); //return the removed zone for convenience
+    Zone* removeZone(Zone* oldZone); //return the removed zone for convenience
     void updateStats();
     void addPolicy(Policy pol); //may update to take in ID of policy instead
     void removePolicy(Policy pol); //may update to take in ID of policy instead
     void addAssett(Assett* acquired);
-    Assett removeAssett(Assett* lost);
+    Assett* removeAssett(Assett* lost);
     void addSpecialist(SpecType type);
     void removeSpecialist(Specialist* dead);
 protected:
-    Leader* leader;
-    ResourceManager* paperPusher;
-    ZoneManager* realEstateManager;
-    FollowerManager* HR;
-    StatusManager* statusManager;
-    std::string name;
-    cimg_library::CImg<unsigned char> flag;
+    Leader* m_leader;
+    ResourceManager* m_paperPusher;
+    ZoneManager* m_realEstateManager;
+    FollowerManager* m_HR;
+    StatusManager* m_statusManager;
+    std::string m_name;
+    cimg_library::CImg<unsigned char> m_flag;
 private:
 
 };

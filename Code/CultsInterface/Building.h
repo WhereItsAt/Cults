@@ -29,15 +29,15 @@ public:
     int getPurchaseCost();
     void setPurchaseCost(int cost);
     int getTurnCost();
-    void setTurnCost();
+    void setTurnCost(int cost);
     void operate();
     void addEffect(std::string attribute, int amount);
-    void removeEffect(std::string attribute, int amount);
+    void removeEffect(std::string attribute);
 private:
-    Base* homeBase;
-    int purchaseCost;
-    int turnCost;
-    std::map<std::string,int> effects;
+    Base* m_homeBase;
+    int m_purchaseCost;
+    int m_turnCost;
+    std::map<std::string,int> m_effects;
 };
 
 #endif /* BUILDING_H */

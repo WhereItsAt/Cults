@@ -32,11 +32,11 @@ public:
     void collectFromBuildings();
     void addBuilding(Building* build);
     void removeBuilding(Building* build);
-    void replaceBuilding(Building* build);
+    void replaceBuilding(Building* oldBuild, Building* newBuild);
     std::list<Building*> getBuildings();
 protected:
-     Zone* homeZone;
-     std::list<Building*> buildings;
+     Zone* m_homeZone;
+     std::list<Building*> m_buildings;
 private:
 
 };

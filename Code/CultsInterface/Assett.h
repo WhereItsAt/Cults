@@ -24,7 +24,7 @@ public:
     GoverningBody* getOwner();
     void setOwner(GoverningBody* gbod);
 protected:
-    GoverningBody* owner;
+    GoverningBody* m_owner;
 private:
 
 };

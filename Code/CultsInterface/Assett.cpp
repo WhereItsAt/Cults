@@ -22,3 +22,10 @@ Assett::Assett(const Assett& orig) {
 Assett::~Assett() {
 }
 
+GoverningBody* Assett::getOwner(){
+    return m_owner;
+}
+
+void Assett::setOwner(GoverningBody* gbod) {
+    m_owner = gbod;
+}

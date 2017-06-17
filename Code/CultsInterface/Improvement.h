@@ -27,9 +27,10 @@ public:
     void operate();
     void addEffect(std::string attribute, int amount);
     void removeEffect(std::string attribute, int amount);
+    std::map<std::string,int> getEffects();
 private:
-    Zone* homeZone;
-    std::map<std::string,int> effects;
+    Zone* m_homeZone;
+    std::map<std::string,int> m_effects;
 };
 
 #endif /* IMPROVEMENT_H */

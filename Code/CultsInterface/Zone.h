@@ -33,13 +33,14 @@ public:
     int getPopulation();
     void setPopulation(int pop);
     int getFollowerCount(GoverningBody* gbod);
-    int transferFollowers(GoverningBody* recruiter, GoverningBody* loser, int amount);
+    void transferFollowers(GoverningBody* recruiter, GoverningBody* loser, int amount);
+    virtual std::string getType() = 0;
 protected: 
-    GoverningBody* currentRuler;
-    int population;
-    std::map<GoverningBody*,int> cultFollowers;
-    Zone* parentZone;
-    std::list<Zone*> childZones;
+    GoverningBody* m_currentRuler;
+    int m_population;
+    std::map<GoverningBody*,int> m_cultFollowers;
+    Zone* m_parentZone;
+    std::list<Zone*> m_childZones;
 private:
 
 };

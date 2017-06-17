@@ -21,6 +21,7 @@ public:
     Country();
     Country(const Country& orig);
     virtual ~Country();
+    virtual std::string getType();
 private:
     
 };

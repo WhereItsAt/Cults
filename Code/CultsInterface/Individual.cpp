@@ -22,3 +22,26 @@ Individual::Individual(const Individual& orig) {
 Individual::~Individual() {
 }
 
+GoverningBody* Individual::getGBody() {
+    return m_cult;
+}
+
+void Individual::setGBody(GoverningBody* gbod) {
+    m_cult = gbod;
+}
+
+int Individual::getAge() {
+    return m_age;
+}
+
+std::string Individual::getName() {
+    return m_name;
+}
+
+void Individual::setAge(int newAge) {
+    m_age = newAge;
+}
+
+void Individual::setName(std::string newName) {
+    m_name = newName;
+}

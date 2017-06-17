@@ -26,11 +26,11 @@ public:
     void jumpShip();
     Leader* convertToLeader();
 private:
-    int opinion;
-    GoverningBody* preferredGBody;
-    SpecType type;
-    int level;
-    int fear;
+    int m_opinion;
+    GoverningBody* m_preferredGBody;
+    SpecType m_type;
+    int m_level;
+    int m_fear;
 };
 
 #endif /* UNIQUEFOLLOWER_H */

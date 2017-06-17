@@ -14,7 +14,9 @@
 #ifndef SPY_H
 #define SPY_H
 
-class Spy {
+#include "Specialist.h"
+
+class Spy: public Specialist {
 public:
     Spy();
     Spy(const Spy& orig);

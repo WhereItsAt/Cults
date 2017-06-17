@@ -22,3 +22,26 @@ Leader::Leader(const Leader& orig) {
 Leader::~Leader() {
 }
 
+void Leader::editAppearance(cimg_library::CImg<unsigned char> newPortrait) {
+    m_portrait = newPortrait;
+}
+
+int Leader::getInsanity() {
+    return m_insanity;
+}
+
+cimg_library::CImg<unsigned char> Leader::getPortrait() {
+    return m_portrait;
+}
+
+int Leader::getRespect() {
+    return m_respect;
+}
+
+void Leader::setInsanity(int ins) {
+    m_insanity = ins;
+}
+
+void Leader::setRespect(int resp) {
+    m_respect = resp;
+}

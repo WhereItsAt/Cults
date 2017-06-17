@@ -22,8 +22,10 @@ public:
     Manager(const Manager& orig);
     virtual ~Manager();
     virtual void relinquish(GoverningBody* enemy) = 0;
+    GoverningBody* getGBody();
+    void setGBody(GoverningBody* gbod);
 protected:
-    GoverningBody* gBody;
+    GoverningBody* m_gBody;
 private:
 
 };

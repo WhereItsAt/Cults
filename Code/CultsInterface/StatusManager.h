@@ -26,7 +26,7 @@ public:
     StatusManager();
     StatusManager(const StatusManager& orig);
     virtual ~StatusManager();
-    //virtual void relinquish(GoverningBody* enemy);
+    virtual void relinquish(GoverningBody* enemy);
     void changeRelation(GoverningBody* gbod, int relationLevel);
     int getRelationWith(GoverningBody* gbod);
     std::map<GoverningBody*, int> getRelations();
@@ -37,9 +37,9 @@ public:
     void removeEvent(StoryEvent ev);
     std::list<StoryEvent> getEvents();
 private:
-    std::list<Policy> selectedPolicies;
-    std::list<StoryEvent> firedEvents;
-    std::map<GoverningBody*, int> relations;
+    std::list<Policy> m_selectedPolicies;
+    std::list<StoryEvent> m_firedEvents;
+    std::map<GoverningBody*, int> m_relations;
 };
 
 #endif /* STATUSMANAGER_H */

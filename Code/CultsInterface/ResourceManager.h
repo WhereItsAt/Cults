@@ -23,7 +23,7 @@ public:
     ResourceManager();
     ResourceManager(const ResourceManager& orig);
     virtual ~ResourceManager();
-    //virtual void relinquish(GoverningBody* enemy);
+    virtual void relinquish(GoverningBody* enemy);
     int getInfluence();
     int getMoney();
     int getThreatLevel();
@@ -35,11 +35,11 @@ public:
     void addAssett(Assett* newAssett);
     Assett* removeAssett(Assett* oldAssett);
 private:
-    int influence;
-    int money;
-    int threatLevel;
-    int stability;
-    std::list<Assett*> assetts;
+    int m_influence;
+    int m_money;
+    int m_threatLevel;
+    int m_stability;
+    std::list<Assett*> m_assetts;
 };
 
 #endif /* RESOURCEMANAGER_H */

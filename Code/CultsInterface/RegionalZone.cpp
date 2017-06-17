@@ -22,3 +22,19 @@ RegionalZone::RegionalZone(const RegionalZone& orig) {
 RegionalZone::~RegionalZone() {
 }
 
+std::list<Assett*> RegionalZone::getAssetts() {
+    return m_assetts;
+}
+
+void RegionalZone::addAssett(Assett* ass) {
+    m_assetts.push_back(ass);
+}
+
+Assett* RegionalZone::removeAssett(Assett* ass) {
+    m_assetts.remove(ass);
+    return ass;
+}
+
+std::string RegionalZone::getType() {
+    return "region";
+}

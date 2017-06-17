@@ -29,9 +29,9 @@ public:
     void setRespect(int resp);
     cimg_library::CImg<unsigned char> getPortrait();
 protected:
-    int insanity;
-    int respect;
-    cimg_library::CImg<unsigned char> portrait;
+    int m_insanity;
+    int m_respect;
+    cimg_library::CImg<unsigned char> m_portrait;
 private:
 
 };

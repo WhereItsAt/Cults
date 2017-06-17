@@ -19,8 +19,11 @@ public:
     StoryEvent();
     StoryEvent(const StoryEvent& orig);
     virtual ~StoryEvent();
+    bool operator==(const StoryEvent &ev) const;
+    int getId() const;
+    void setId(int id);
 private:
-
+    int m_id;
 };
 
 #endif /* STORYEVENT_H */

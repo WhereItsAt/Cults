@@ -30,19 +30,19 @@ public:
     GoverningBody* getGBody();
     void setGBody(GoverningBody* gbod);
 protected:
-    std::string name;
-    int age;
-    GoverningBody* cult;
+    std::string m_name;
+    int m_age;
+    GoverningBody* m_cult;
 private:
 
 };
 
 enum SpecType
 {
-    Beaurocrat,
-    Commander,
-    Spy,
-    Evangelist
+    t_beaurocrat,
+    t_commander,
+    t_spy,
+    t_evangelist
 };
 //specType tempType = Commander;
 

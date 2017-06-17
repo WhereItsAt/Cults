@@ -19,8 +19,11 @@ public:
     Policy();
     Policy(const Policy& orig);
     virtual ~Policy();
+    bool operator==(const Policy &pol) const;
+    std::string getName() const;
+    void setName(std::string name);
 private:
-
+    std::string m_name;
 };
 
 #endif /* POLICY_H */

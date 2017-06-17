@@ -32,8 +32,8 @@ public:
     Zone* getLocation();
     void setLocation(Zone* newLocation);
 protected:
-    int level;
-    Zone* Location;
+    int m_level;
+    Zone* m_location;
 private:
 
 };

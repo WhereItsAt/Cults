@@ -24,7 +24,7 @@ public:
     FollowerManager();
     FollowerManager(const FollowerManager& orig);
     virtual ~FollowerManager();
-    //virtual void relinquish(GoverningBody* enemy);
+    virtual void relinquish(GoverningBody* enemy);
     void setFollowerCount(int count);
     int getFollowerCount();
     void setUniqueFollowerCount(int count);
@@ -38,11 +38,11 @@ public:
     void addSpecialist(Specialist* spec);
     Specialist* removeSpecialist(Specialist* spec);
 private:
-    int followerCount;
-    int uniqueFollowerCount;
-    std::list<UniqueFollower*> uniqueFollowers;
-    int happiness;
-    std::list<Specialist*> specialists;
+    int m_followerCount;
+    int m_uniqueFollowerCount;
+    std::list<UniqueFollower*> m_uniqueFollowers;
+    int m_happiness;
+    std::list<Specialist*> m_specialists;
 };
 
 #endif /* FOLLOWERMANAGER_H */

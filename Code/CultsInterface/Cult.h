@@ -29,8 +29,8 @@ public:
     void setMaster(Government* newMaster);
     void coup(Leader* newLeader);
 protected:
-    TierFlag tier;
-    Government* master;
+    TierFlag m_tier;
+    Government* m_master;
 private:
 
 };

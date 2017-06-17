@@ -22,3 +22,6 @@ myCity::myCity(const myCity& orig) {
 myCity::~myCity() {
 }
 
+std::string myCity::getType() {
+    return "city";
+}
