@@ -45,3 +45,4 @@ void Individual::setAge(int newAge) {
 void Individual::setName(std::string newName) {
     m_name = newName;
 }
+

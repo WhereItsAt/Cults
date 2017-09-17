@@ -29,6 +29,7 @@ void FollowerManager::addSpecialist(Specialist* spec) {
 
 void FollowerManager::addUniqueFollower(UniqueFollower* follower) {
     m_uniqueFollowers.push_back(follower);
+    m_uniqueFollowerCount++;
     follower->setGBody(getGBody());
 }
 
@@ -61,6 +62,7 @@ Specialist* FollowerManager::removeSpecialist(Specialist* spec) {
 
 UniqueFollower* FollowerManager::removeUniqueFollower(UniqueFollower* follower) {
     m_uniqueFollowers.remove(follower);
+    m_uniqueFollowerCount--;
     return follower;
 }
 

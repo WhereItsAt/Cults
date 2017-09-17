@@ -15,7 +15,6 @@
 #define GOVERNINGBODY_H
 
 #include <string>
-#include "CImg.h"
 #include "Leader.h"
 //#include "Zone.h"
 //#include "Specialist.h"
@@ -72,7 +71,7 @@ protected:
     FollowerManager* m_HR;
     StatusManager* m_statusManager;
     std::string m_name;
-    cimg_library::CImg<unsigned char> m_flag;
+    //cimg_library::CImg<unsigned char> m_flag;
 private:
 
 };

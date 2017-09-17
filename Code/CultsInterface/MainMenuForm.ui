@@ -30,7 +30,7 @@
    <string>MainMenuForm</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(0, 85, 255, 255), stop:0.1 rgba(255, 255, 255, 255), stop:0.2 rgba(108, 224, 255, 167), stop:0.3 rgba(129, 190, 255, 92), stop:0.4 rgba(120, 215, 255, 51), stop:0.5 rgba(39, 89, 255, 205), stop:0.52 rgba(80, 74, 255, 205), stop:0.6 rgba(112, 131, 255, 84), stop:1 rgba(255, 255, 255, 0));</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -61,11 +61,15 @@
           <pointsize>35</pointsize>
           <weight>75</weight>
           <bold>true</bold>
-          <underline>true</underline>
+          <underline>false</underline>
          </font>
         </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
         <property name="styleSheet">
-         <string notr="true">color : rgb(255, 255, 255)</string>
+         <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
          <string>Cults</string>
@@ -96,7 +100,10 @@
          </size>
         </property>
         <property name="autoFillBackground">
-         <bool>true</bool>
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(0, 0, 0, 0), stop:0.52 rgba(0, 0, 0, 0), stop:0.565 rgba(82, 121, 76, 33), stop:0.65 rgba(59, 122, 195, 64), stop:0.721925 rgba(85, 139, 223, 129), stop:0.77 rgba(94, 128, 196, 204), stop:0.89 rgba(99, 128, 255, 64), stop:1 rgba(0, 0, 0, 0));</string>
         </property>
         <property name="text">
          <string/>
@@ -116,29 +123,39 @@
        <widget class="QPushButton" name="NewButton">
         <property name="minimumSize">
          <size>
-          <width>102</width>
-          <height>102</height>
+          <width>300</width>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>102</width>
-          <height>102</height>
+          <width>650</width>
+          <height>150</height>
          </size>
         </property>
         <property name="cursor">
          <cursorShape>CrossCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true"> background-color: white;
- border-style: solid;
- border-width:1px;
- border-radius:50px;
- border-color: red;
- max-width:100px;
- max-height:100px;
- min-width:100px;
- min-height:100px;</string>
+         <string notr="true">QPushButton:hover:!pressed
+{
+	border: 1px solid black;
+	background-color: rgba(255, 255, 255, 25);
+	color: rgb(0,0,0);
+}
+
+QPushButton:pressed
+{
+	background-color: rgba(0,0,0,255);
+	color: rgb(255, 255, 255);
+}
+
+QPushButton
+{
+	background-color: rgba(255,255,255,25);
+	color: rgb(0, 0, 0);
+}
+</string>
         </property>
         <property name="text">
          <string>New Game</string>
@@ -171,6 +188,27 @@
         <property name="cursor">
          <cursorShape>CrossCursor</cursorShape>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover:!pressed
+{
+	border: 1px solid black;
+	background-color: rgba(255, 255, 255, 25);
+	color: rgb(0,0,0);
+}
+
+QPushButton:pressed
+{
+	background-color: rgba(0,0,0,255);
+	color: rgb(255, 255, 255);
+}
+
+QPushButton
+{
+	background-color: rgba(255,255,255,25);
+	color: rgb(0, 0, 0);
+}
+</string>
+        </property>
         <property name="text">
          <string>Load Game</string>
         </property>
@@ -192,6 +230,27 @@
         </property>
         <property name="cursor">
          <cursorShape>CrossCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover:!pressed
+{
+	border: 1px solid black;
+	background-color: rgba(255, 255, 255, 25);
+	color: rgb(0,0,0);
+}
+
+QPushButton:pressed
+{
+	background-color: rgba(0,0,0,255);
+	color: rgb(255, 255, 255);
+}
+
+QPushButton
+{
+	background-color: rgba(255,255,255,25);
+	color: rgb(0, 0, 0);
+}
+</string>
         </property>
         <property name="text">
          <string>Options</string>
@@ -215,6 +274,27 @@
         <property name="cursor">
          <cursorShape>CrossCursor</cursorShape>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover:!pressed
+{
+	border: 1px solid black;
+	background-color: rgba(255, 255, 255, 25);
+	color: rgb(0,0,0);
+}
+
+QPushButton:pressed
+{
+	background-color: rgba(0,0,0,255);
+	color: rgb(255, 255, 255);
+}
+
+QPushButton
+{
+	background-color: rgba(255,255,255,25);
+	color: rgb(0, 0, 0);
+}
+</string>
+        </property>
         <property name="text">
          <string>Exit</string>
         </property>
@@ -233,24 +313,6 @@
      </layout>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>806</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
   </widget>
  </widget>
  <resources/>

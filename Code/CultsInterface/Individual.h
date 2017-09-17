@@ -23,6 +23,8 @@ public:
     Individual();
     Individual(const Individual& orig);
     virtual ~Individual();
+    //drop age,name
+    //add id (contains name, age, country)
     std::string getName();
     void setName(std::string newName);
     int getAge();
@@ -30,6 +32,8 @@ public:
     GoverningBody* getGBody();
     void setGBody(GoverningBody* gbod);
 protected:
+    //drop age,name
+    //add id (contains name, age, country)
     std::string m_name;
     int m_age;
     GoverningBody* m_cult;

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GameScreen</class>
+ <widget class="QMainWindow" name="GameScreen">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>GameScreen</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuGame">
+    <property name="title">
+     <string>Game</string>
+    </property>
+    <addaction name="actionNew_Game"/>
+    <addaction name="actionLoad_Game"/>
+    <addaction name="actionMain_Menu"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuCults">
+    <property name="title">
+     <string>Cults</string>
+    </property>
+    <addaction name="actionList_Cults"/>
+   </widget>
+   <widget class="QMenu" name="menuMap">
+    <property name="title">
+     <string>Map</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuInfo">
+    <property name="title">
+     <string>Info</string>
+    </property>
+    <addaction name="actionShow_Game_Info"/>
+    <addaction name="actionShow_Map_Info"/>
+    <addaction name="actionShow_Cult_Info"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <addaction name="menuGame"/>
+   <addaction name="menuCults"/>
+   <addaction name="menuMap"/>
+   <addaction name="menuInfo"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew_Game">
+   <property name="text">
+    <string>New Game</string>
+   </property>
+  </action>
+  <action name="actionLoad_Game">
+   <property name="text">
+    <string>Load Game</string>
+   </property>
+  </action>
+  <action name="actionMain_Menu">
+   <property name="text">
+    <string>Main Menu</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionList_Cults">
+   <property name="text">
+    <string>List Cults</string>
+   </property>
+  </action>
+  <action name="actionShow_Game_Info">
+   <property name="text">
+    <string>Show Game Info</string>
+   </property>
+  </action>
+  <action name="actionShow_Map_Info">
+   <property name="text">
+    <string>Show Map Info</string>
+   </property>
+  </action>
+  <action name="actionShow_Cult_Info">
+   <property name="text">
+    <string>Show Cult Info</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

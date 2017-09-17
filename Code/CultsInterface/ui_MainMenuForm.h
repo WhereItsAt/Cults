@@ -18,9 +18,7 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QMainWindow>
-#include <QtGui/QMenuBar>
 #include <QtGui/QPushButton>
-#include <QtGui/QStatusBar>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 
@@ -39,8 +37,6 @@ public:
     QPushButton *OptionsButton;
     QPushButton *ExitButton;
     QFrame *frame;
-    QMenuBar *menubar;
-    QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainMenuForm)
     {
@@ -50,7 +46,7 @@ public:
         MainMenuForm->setMinimumSize(QSize(600, 400));
         MainMenuForm->setMaximumSize(QSize(1920, 1080));
         MainMenuForm->setContextMenuPolicy(Qt::NoContextMenu);
-        MainMenuForm->setStyleSheet(QString::fromUtf8(""));
+        MainMenuForm->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(0, 85, 255, 255), stop:0.1 rgba(255, 255, 255, 255), stop:0.2 rgba(108, 224, 255, 167), stop:0.3 rgba(129, 190, 255, 92), stop:0.4 rgba(120, 215, 255, 51), stop:0.5 rgba(39, 89, 255, 205), stop:0.52 rgba(80, 74, 255, 205), stop:0.6 rgba(112, 131, 255, 84), stop:1 rgba(255, 255, 255, 0));"));
         centralwidget = new QWidget(MainMenuForm);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -69,10 +65,12 @@ public:
         QFont font;
         font.setPointSize(35);
         font.setBold(true);
-        font.setUnderline(true);
+        font.setUnderline(false);
         font.setWeight(75);
         TitleLabel->setFont(font);
-        TitleLabel->setStyleSheet(QString::fromUtf8("color : rgb(255, 255, 255)"));
+        TitleLabel->setAutoFillBackground(false);
+        TitleLabel->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 0);\n"
+"color: rgb(255, 255, 255);"));
         TitleLabel->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
 
         verticalLayout->addWidget(TitleLabel);
@@ -83,7 +81,8 @@ public:
         BackgroundImage->setSizePolicy(sizePolicy);
         BackgroundImage->setMinimumSize(QSize(300, 200));
         BackgroundImage->setMaximumSize(QSize(1920, 1080));
-        BackgroundImage->setAutoFillBackground(true);
+        BackgroundImage->setAutoFillBackground(false);
+        BackgroundImage->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(0, 0, 0, 0), stop:0.52 rgba(0, 0, 0, 0), stop:0.565 rgba(82, 121, 76, 33), stop:0.65 rgba(59, 122, 195, 64), stop:0.721925 rgba(85, 139, 223, 129), stop:0.77 rgba(94, 128, 196, 204), stop:0.89 rgba(99, 128, 255, 64), stop:1 rgba(0, 0, 0, 0));"));
         BackgroundImage->setPixmap(QPixmap(QString::fromUtf8("../../Documents/cults/robe.png")));
         BackgroundImage->setScaledContents(true);
         BackgroundImage->setAlignment(Qt::AlignCenter);
@@ -92,18 +91,28 @@ public:
 
         NewButton = new QPushButton(centralwidget);
         NewButton->setObjectName(QString::fromUtf8("NewButton"));
-        NewButton->setMinimumSize(QSize(102, 102));
-        NewButton->setMaximumSize(QSize(102, 102));
+        NewButton->setMinimumSize(QSize(300, 40));
+        NewButton->setMaximumSize(QSize(650, 150));
         NewButton->setCursor(QCursor(Qt::CrossCursor));
-        NewButton->setStyleSheet(QString::fromUtf8(" background-color: white;\n"
-" border-style: solid;\n"
-" border-width:1px;\n"
-" border-radius:50px;\n"
-" border-color: red;\n"
-" max-width:100px;\n"
-" max-height:100px;\n"
-" min-width:100px;\n"
-" min-height:100px;"));
+        NewButton->setStyleSheet(QString::fromUtf8("QPushButton:hover:!pressed\n"
+"{\n"
+"	border: 1px solid black;\n"
+"	background-color: rgba(255, 255, 255, 25);\n"
+"	color: rgb(0,0,0);\n"
+"}\n"
+"\n"
+"QPushButton:pressed\n"
+"{\n"
+"	background-color: rgba(0,0,0,255);\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton\n"
+"{\n"
+"	background-color: rgba(255,255,255,25);\n"
+"	color: rgb(0, 0, 0);\n"
+"}\n"
+""));
         NewButton->setAutoDefault(false);
         NewButton->setDefault(false);
         NewButton->setFlat(false);
@@ -115,6 +124,25 @@ public:
         LoadButton->setMinimumSize(QSize(300, 40));
         LoadButton->setMaximumSize(QSize(600, 150));
         LoadButton->setCursor(QCursor(Qt::CrossCursor));
+        LoadButton->setStyleSheet(QString::fromUtf8("QPushButton:hover:!pressed\n"
+"{\n"
+"	border: 1px solid black;\n"
+"	background-color: rgba(255, 255, 255, 25);\n"
+"	color: rgb(0,0,0);\n"
+"}\n"
+"\n"
+"QPushButton:pressed\n"
+"{\n"
+"	background-color: rgba(0,0,0,255);\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton\n"
+"{\n"
+"	background-color: rgba(255,255,255,25);\n"
+"	color: rgb(0, 0, 0);\n"
+"}\n"
+""));
 
         verticalLayout->addWidget(LoadButton, 0, Qt::AlignHCenter);
 
@@ -123,6 +151,25 @@ public:
         OptionsButton->setMinimumSize(QSize(300, 40));
         OptionsButton->setMaximumSize(QSize(600, 150));
         OptionsButton->setCursor(QCursor(Qt::CrossCursor));
+        OptionsButton->setStyleSheet(QString::fromUtf8("QPushButton:hover:!pressed\n"
+"{\n"
+"	border: 1px solid black;\n"
+"	background-color: rgba(255, 255, 255, 25);\n"
+"	color: rgb(0,0,0);\n"
+"}\n"
+"\n"
+"QPushButton:pressed\n"
+"{\n"
+"	background-color: rgba(0,0,0,255);\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton\n"
+"{\n"
+"	background-color: rgba(255,255,255,25);\n"
+"	color: rgb(0, 0, 0);\n"
+"}\n"
+""));
 
         verticalLayout->addWidget(OptionsButton, 0, Qt::AlignHCenter);
 
@@ -131,6 +178,25 @@ public:
         ExitButton->setMinimumSize(QSize(300, 40));
         ExitButton->setMaximumSize(QSize(600, 150));
         ExitButton->setCursor(QCursor(Qt::CrossCursor));
+        ExitButton->setStyleSheet(QString::fromUtf8("QPushButton:hover:!pressed\n"
+"{\n"
+"	border: 1px solid black;\n"
+"	background-color: rgba(255, 255, 255, 25);\n"
+"	color: rgb(0,0,0);\n"
+"}\n"
+"\n"
+"QPushButton:pressed\n"
+"{\n"
+"	background-color: rgba(0,0,0,255);\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton\n"
+"{\n"
+"	background-color: rgba(255,255,255,25);\n"
+"	color: rgb(0, 0, 0);\n"
+"}\n"
+""));
 
         verticalLayout->addWidget(ExitButton, 0, Qt::AlignHCenter);
 
@@ -145,15 +211,6 @@ public:
         gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
 
         MainMenuForm->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(MainMenuForm);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setEnabled(false);
-        menubar->setGeometry(QRect(0, 0, 806, 25));
-        MainMenuForm->setMenuBar(menubar);
-        statusbar = new QStatusBar(MainMenuForm);
-        statusbar->setObjectName(QString::fromUtf8("statusbar"));
-        statusbar->setEnabled(false);
-        MainMenuForm->setStatusBar(statusbar);
 
         retranslateUi(MainMenuForm);
 

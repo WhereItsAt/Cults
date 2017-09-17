@@ -15,23 +15,23 @@
 #define LEADER_H
 
 #include "Individual.h"
-#include "CImg.h"
 
 class Leader: public Individual {
 public:
     Leader();
     Leader(const Leader& orig);
     virtual ~Leader();
-    void editAppearance(cimg_library::CImg<unsigned char> newPortrait);
+    void editAppearance();
     int getInsanity();
     int getRespect();
     void setInsanity(int ins);
     void setRespect(int resp);
-    cimg_library::CImg<unsigned char> getPortrait();
+    int getPortrait();
 protected:
     int m_insanity;
     int m_respect;
-    cimg_library::CImg<unsigned char> m_portrait;
+    //change to img somehow
+    int m_portrait;
 private:
 
 };

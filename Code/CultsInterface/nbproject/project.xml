@@ -21,6 +21,10 @@
                     <name>Release</name>
                     <type>4</type>
                 </confElem>
+                <confElem>
+                    <name>Test</name>
+                    <type>4</type>
+                </confElem>
             </confList>
             <formatting>
                 <project-formatting-style>false</project-formatting-style>

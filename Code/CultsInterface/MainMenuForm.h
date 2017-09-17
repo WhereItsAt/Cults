@@ -15,16 +15,22 @@
 #define _MAINMENUFORM_H
 
 #include "ui_MainMenuForm.h"
+#include "OptionsForm.h"
 
 class MainMenuForm : public QMainWindow {
     Q_OBJECT
 public:
     MainMenuForm();
     virtual ~MainMenuForm();
+    
 private:
     Ui::MainMenuForm widget;
+    OptionsForm *m_optionsWindow;
+    
     public slots:
         void QuitApp();
+        void ShowOptions();
+        void LoadFile();
 };
 
 #endif /* _MAINMENUFORM_H */
