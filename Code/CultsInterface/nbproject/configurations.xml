@@ -16,8 +16,11 @@
       <logicalFolder name="f4" displayName="map" projectFiles="true">
         <itemPath>Country.h</itemPath>
         <itemPath>Empire.h</itemPath>
+        <itemPath>GameMap.h</itemPath>
+        <itemPath>MapTile.h</itemPath>
         <itemPath>RegionalZone.h</itemPath>
         <itemPath>Suburb.h</itemPath>
+        <itemPath>TileType.h</itemPath>
         <itemPath>Zone.h</itemPath>
         <itemPath>myCity.h</itemPath>
       </logicalFolder>
@@ -85,6 +88,8 @@
       <logicalFolder name="f2" displayName="map" projectFiles="true">
         <itemPath>Country.cpp</itemPath>
         <itemPath>Empire.cpp</itemPath>
+        <itemPath>GameMap.cpp</itemPath>
+        <itemPath>MapTile.cpp</itemPath>
         <itemPath>RegionalZone.cpp</itemPath>
         <itemPath>Suburb.cpp</itemPath>
         <itemPath>Zone.cpp</itemPath>
@@ -248,6 +253,10 @@
       </item>
       <item path="FollowerManager.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="GameMap.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameMap.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="GameScreen.cpp.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameScreen.h" ex="false" tool="3" flavor2="0">
@@ -318,6 +327,10 @@
       </item>
       <item path="Manager.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MapTile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MapTile.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="OptionsForm.cpp.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="OptionsForm.h" ex="false" tool="3" flavor2="0">
@@ -381,6 +394,8 @@
       <item path="Suburb.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Suburb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TileType.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="UniqueFollower.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -509,6 +524,10 @@
       </item>
       <item path="FollowerManager.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="GameMap.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameMap.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="GameScreen.cpp.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameScreen.h" ex="false" tool="3" flavor2="0">
@@ -579,6 +598,10 @@
       </item>
       <item path="Manager.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MapTile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MapTile.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="OptionsForm.cpp.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="OptionsForm.h" ex="false" tool="3" flavor2="0">
@@ -642,6 +665,8 @@
       <item path="Suburb.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Suburb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TileType.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="UniqueFollower.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -758,6 +783,10 @@
       </item>
       <item path="FollowerManager.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="GameMap.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameMap.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="GameScreen.cpp.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameScreen.h" ex="false" tool="3" flavor2="0">
@@ -828,6 +857,10 @@
       </item>
       <item path="Manager.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MapTile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MapTile.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="OptionsForm.cpp.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="OptionsForm.h" ex="false" tool="3" flavor2="0">
@@ -891,6 +924,8 @@
       <item path="Suburb.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Suburb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TileType.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="UniqueFollower.cpp" ex="false" tool="1" flavor2="0">
       </item>

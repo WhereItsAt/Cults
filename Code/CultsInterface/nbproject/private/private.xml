@@ -10,10 +10,12 @@
             <file>file:/home/scott/NetBeansProjects/CultsInterface/KoreaFemale.txt</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/IndiaFemale.txt</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/KoreaMale.txt</file>
+            <file>file:/home/scott/NetBeansProjects/CultsInterface/Country.h</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/RussiaFemale.txt</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/myCity.h</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/Assett.h</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/GameScreen.cpp.cc</file>
+            <file>file:/home/scott/NetBeansProjects/CultsInterface/Cult.h</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/main.cpp</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/Japan.txt</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/Russia.txt</file>
@@ -21,7 +23,9 @@
             <file>file:/home/scott/NetBeansProjects/CultsInterface/ChinaMale.txt</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/myCity.cpp</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/GameScreen.h</file>
+            <file>file:/home/scott/NetBeansProjects/CultsInterface/Individual.h</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/Leader.h</file>
+            <file>file:/home/scott/NetBeansProjects/CultsInterface/FollowerManager.h</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/MainMenuForm.cpp.cc</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/MainMenuForm.h</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/Vietnam.txt</file>
@@ -29,6 +33,7 @@
             <file>file:/home/scott/NetBeansProjects/CultsInterface/id.cpp</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/RussiaMale.txt</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/Assett.cpp</file>
+            <file>file:/home/scott/NetBeansProjects/CultsInterface/Country.cpp</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/China.txt</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/Korea.txt</file>
             <file>file:/home/scott/NetBeansProjects/CultsInterface/Leader.cpp</file>
