@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="GeneratedFiles\qrc_CultsVS2017.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Alternate\moc_CultsVS2017.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CultsVS2017.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CultsVS2017.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bureaucrat.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="CEO.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="Evangelist.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="FederalLeader.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="Commander.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="GovernmentLeader.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="Individual.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="Leader.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalLeader.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="Politician.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="Priest.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="Specialist.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="Spy.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="UniqueFollower.cpp">
+      <Filter>Source Files\People</Filter>
+    </ClCompile>
+    <ClCompile Include="Buisness.cpp">
+      <Filter>Source Files\Groups</Filter>
+    </ClCompile>
+    <ClCompile Include="Cult.cpp">
+      <Filter>Source Files\Groups</Filter>
+    </ClCompile>
+    <ClCompile Include="FederalGovernment.cpp">
+      <Filter>Source Files\Groups</Filter>
+    </ClCompile>
+    <ClCompile Include="GoverningBody.cpp">
+      <Filter>Source Files\Groups</Filter>
+    </ClCompile>
+    <ClCompile Include="Government.cpp">
+      <Filter>Source Files\Groups</Filter>
+    </ClCompile>
+    <ClCompile Include="Country.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Empire.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTile.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="myCity.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowerManager.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="id.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="idGenerator.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusManager.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneManager.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Suburb.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalGovernment.cpp">
+      <Filter>Source Files\Groups</Filter>
+    </ClCompile>
+    <ClCompile Include="PoliticalParty.cpp">
+      <Filter>Source Files\Groups</Filter>
+    </ClCompile>
+    <ClCompile Include="Religion.cpp">
+      <Filter>Source Files\Groups</Filter>
+    </ClCompile>
+    <ClCompile Include="RegionalZone.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="nameByCountry.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="Assett.cpp">
+      <Filter>Source Files\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>Source Files\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Building.cpp">
+      <Filter>Source Files\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandCenter.cpp">
+      <Filter>Source Files\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="HeadQuarters.cpp">
+      <Filter>Source Files\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Improvement.cpp">
+      <Filter>Source Files\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Policy.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="StoryEvent.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="SafeHouse.cpp">
+      <Filter>Source Files\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsForm.cpp.cc">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CultsVS2017.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreen.cpp.cc">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuForm.cpp.cc">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{ccafa119-9dba-4796-b421-9d00b945dbcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Mechanics">
+      <UniqueIdentifier>{c2000cc2-c000-4984-8412-d174a50e7990}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\People">
+      <UniqueIdentifier>{257db2ea-f8b5-4ad4-a65e-a5908d8efe37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Groups">
+      <UniqueIdentifier>{4ad11778-29fd-454e-9d98-72a04c0129ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{13b937ca-5c77-4791-89ab-b7724c6ef67b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mechanics">
+      <UniqueIdentifier>{f5ce4da6-d780-49e8-b027-685130261f98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Groups">
+      <UniqueIdentifier>{2d166c76-cf3f-43a3-b4d4-3aaeb945ea32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\People">
+      <UniqueIdentifier>{6f4e18cd-6fec-4a2e-8098-a7be6ad1fce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Buildings">
+      <UniqueIdentifier>{a53bfdf1-6ec4-4ead-b626-71df3a3dbf9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{7de22133-6dbf-41ac-bda5-4e2e8b1c97f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Buildings">
+      <UniqueIdentifier>{56ca10d9-50c8-4d02-aeb5-d594ae581e69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{3faed170-f04e-4360-887b-50db12b8117f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CultsVS2017.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CultsVS2017.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\..\..\Source\Repos\Cults\Code\CultsInterface\GameScreen.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\..\..\Source\Repos\Cults\Code\CultsInterface\MainMenuForm.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\..\..\Source\Repos\Cults\Code\CultsInterface\OptionsForm.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainMenuForm.h">
+      <Filter>Header Files\GUI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GameScreen.h">
+      <Filter>Header Files\GUI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="OptionsForm.h">
+      <Filter>Header Files\GUI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CultsVS2017.h">
+      <Filter>Header Files\GUI</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_CultsVS2017.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_GameScreen.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_MainMenuForm.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_OptionsForm.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bureaucrat.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="CEO.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Commander.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Evangelist.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="FederalLeader.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="GovernmentLeader.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Individual.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Leader.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalLeader.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Politician.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Priest.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Specialist.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Spy.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Country.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Empire.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowerManager.h">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="Government.h">
+      <Filter>Header Files\Groups</Filter>
+    </ClInclude>
+    <ClInclude Include="GoverningBody.h">
+      <Filter>Header Files\Groups</Filter>
+    </ClInclude>
+    <ClInclude Include="FederalGovernment.h">
+      <Filter>Header Files\Groups</Filter>
+    </ClInclude>
+    <ClInclude Include="Cult.h">
+      <Filter>Header Files\Groups</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalGovernment.h">
+      <Filter>Header Files\Groups</Filter>
+    </ClInclude>
+    <ClInclude Include="id.h">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="idGenerator.h">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="PoliticalParty.h">
+      <Filter>Header Files\Groups</Filter>
+    </ClInclude>
+    <ClInclude Include="Religion.h">
+      <Filter>Header Files\Groups</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTile.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TileType.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Suburb.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="nameByCountry.h">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusManager.h">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="RegionalZone.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneManager.h">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="UniqueFollower.h">
+      <Filter>Header Files\People</Filter>
+    </ClInclude>
+    <ClInclude Include="Buisness.h">
+      <Filter>Header Files\Groups</Filter>
+    </ClInclude>
+    <ClInclude Include="Assett.h">
+      <Filter>Header Files\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>Header Files\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>Header Files\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="HeadQuarters.h">
+      <Filter>Header Files\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Improvement.h">
+      <Filter>Header Files\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="SafeHouse.h">
+      <Filter>Header Files\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandCenter.h">
+      <Filter>Header Files\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Policy.h">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="StoryEvent.h">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_MainMenuForm.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_OptionsForm.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="City.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="China.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ChinaFemale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ChinaMale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="India.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="IndiaFemale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="IndiaMale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Japan.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="JapanFemale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="JapanMale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Korea.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="KoreaFemale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="KoreaMale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Russia.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="RussiaFemale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="RussiaMale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Vietnam.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="VietnamFemale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="VietnamMale.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
