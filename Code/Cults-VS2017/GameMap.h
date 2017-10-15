@@ -35,6 +35,8 @@ class GameMap {
 		void findPath(MapTile* start, MapTile* end);
 		void countTilesFor(std::string type);
 		void selectTownCenters();
+		MapTile * getNextTownCenter();
+		double getTileDistanceRank(int x, int y, int ** arr);
 		void setRuralArea();
 		void initializeGameMap(int size);
 		std::vector<MapTile*> getNeighbouringTiles(MapTile* tile);

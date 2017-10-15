@@ -16,11 +16,13 @@
 #include "TileType.h"
 #include <iostream>
 #include <vector>
+#include <list>
 #include <string>
 #include <cmath>
 #include <ctime>
 #include <random>
 #include <set>
+#include <algorithm>
 
 GameMap::GameMap() {
 	initializeGameMap(m_defaultSize);
@@ -78,15 +80,15 @@ void GameMap::printMap() {
 void GameMap::printOnly(std::string type) {
 	for (int i = 0; i < m_size; ++i) {
 		for (int j = 0; j < m_size; ++j) {
-MapTile* tempTile = m_gameMap[i][j];
-//if (tempTile->getTileType() == i) {
-if (tempTile->getType().compare(type) == 0) {
-	tempTile->printTile();
-	std::cout << ", ";
-}
-else {
-	std::cout << " , ";
-}
+			MapTile* tempTile = m_gameMap[i][j];
+			//if (tempTile->getTileType() == i) {
+			if (tempTile->getType().compare(type) == 0) {
+				tempTile->printTile();
+				std::cout << ", ";
+			}
+			else {
+				std::cout << " , ";
+			}
 		}
 		std::cout << std::endl;
 	}
@@ -175,17 +177,25 @@ void GameMap::generateTown(MapTile* center, int size) {
 	int townTileCount = 1; //track this towns tiles
 	std::vector<MapTile*> tempNeigh = getNeighbouringTiles(center);
 	std::vector<MapTile*> townTiles = { center };
-	std::set<MapTile*> neighbours(tempNeigh.begin(), tempNeigh.end());
+	std::set<MapTile*> neighbours;
+	for (int i = 0; i < tempNeigh.size(); ++i) {
+		if (tempNeigh.at(i)->getType().compare("city") != 0 || tempNeigh.at(i)->getType().compare("town") != 0) {
+			neighbours.insert(tempNeigh.at(i));
+		}
+	}
+	//std::set<MapTile*> neighbours(tempNeigh.begin(), tempNeigh.end());
 	while (townTileCount <= size) {
 		for (int i = 0; i < townTiles.size(); ++i) {
 			std::vector<MapTile*> newNeighbours = getNeighbouringTiles(townTiles.at(i));
 			for (int j = 0; j < newNeighbours.size(); ++j) {
-				neighbours.insert(newNeighbours.at(i));
+				if (tempNeigh.at(i)->getType().compare("city") != 0 || tempNeigh.at(i)->getType().compare("town") != 0) {
+					neighbours.insert(newNeighbours.at(i));
+				}
 			}
 		}
 
 		std::set<MapTile*>::iterator it = neighbours.begin();
-		std::advance(it, getRandomNumber(0, neighbours.size()-1));
+		std::advance(it, getRandomNumber(0, neighbours.size() - 1));
 		MapTile* townExpansion = *it;
 		neighbours.erase(it);
 		townExpansion->setType("town");
@@ -199,19 +209,167 @@ void GameMap::generateTown(MapTile* center, int size) {
 void GameMap::generateAllTowns() {
 	int townSize = getRandomNumber(m_townMinSize, m_townMaxSize); //set this towns size, random number between min and max
 
-	//create 2d array of integers to represent game map
-	//set city, town & map boundary tiles to -1
-	//for each other tile, count distance left/right/up/down until -1, add all distances and divide by four
-	//find max numbers, place a town, reevaluate weights and repeat
+
+}
+
+void GameMap::selectTownCenters() {
+
+}
+
+MapTile* GameMap::getNextTownCenter() {
+	//set boundary and town/city tiles to -1, set unexplored tiles to INT_MIN
+	int** weights = new int*[m_size];
+	for (int i = 0; i < m_size; ++i) {
+		weights[i] = new int[m_size];
+		if (i == 0 || (i + 1) == m_size) {
+			std::fill(weights[i], weights[i] + sizeof(weights[i]), -1);
+		} else {
+			std::fill(weights[i], weights[i] + sizeof(weights[i]), INT_MIN);
+			weights[i][0] = -1;
+			weights[i][(m_size - 1)] = -1;
+		}
+	}
+
+	for (int i = 0; i < m_size; ++i) {
+		for (int j = 0; j < m_size; ++j) {
+			if (m_gameMap[i][j]->getType().compare("town") == 0 || m_gameMap[i][j]->getType().compare("city") == 0) {
+				weights[i][j] = -1;
+			}
+		}
+	}
+
+	//keep list of all explored and unexplored tiles, finish when all tiles explored
+	//add all unusable (boundary/city/town) tiles to explored, the rest to unexplored
+	//add first tile to unvisited, use two while loops to maintain search of current reachable tiles and all tiles
+	//find neighbours, add to unvisited if not in visited, check to see if adj tile has the minimum weight of all neighbours
+	//update current tile weight to be min adj weight plus one
+	//add tile to visited/explored, and remove from unexplored, already removed from visited at start of loop
+	//if we have visited all adjacent tiles, but there are still unexplored tiles we grab the next one add to unvisited and start again
+	std::vector<MapTile*> visited, explored;
+	std::list<MapTile*> unvisited, unexplored;
+	for (int i = 0; i < m_size; ++i) {
+		for (int j = 0; j < m_size; ++j) {
+			if (weights[i][j] == -1) {
+				explored.push_back(m_gameMap[i][j]);
+			} else {
+				unexplored.push_back(m_gameMap[i][j]);
+			}
+		}
+	}
+	
+	MapTile* current = m_gameMap[0][0];
+	unvisited.push_back(current);
+	while (!unexplored.empty()) {
+		while (!unvisited.empty()) {
+			current = unvisited.front();
+			unvisited.pop_front();
+			
+			int minAdjWeight = INT_MAX;
+			int newWeight = -1;
+			std::vector<MapTile*> neigh = getNeighbouringTiles(current);
+			for (int i = 0; i < neigh.size(); ++i) {
+				MapTile* tempTile = neigh.at(i);
+				if (std::find(visited.begin(), visited.end(), tempTile) == visited.end()) {
+					if (weights[current->getX()][current->getY()] < minAdjWeight) {
+						minAdjWeight = weights[current->getX()][current->getY()];
+					}
+					unvisited.push_back(tempTile);
+				}
+			}
+
+			if (minAdjWeight != INT_MAX) {
+				newWeight = minAdjWeight + 1;
+			} else {
+				std::cerr << "error getting next town - could not find adjacent unvisited tile";
+			}
+
+			weights[current->getX()][current->getY()] = newWeight;
+
+			visited.push_back(current);
+			explored.push_back(current);
+			unexplored.remove(current);
+		}
+		//scan from new spot
+		MapTile* newSpot = unexplored.front();
+		unvisited.push_back(newSpot);
+	}
+
+	//MapTile* current = m_gameMap[1][1];
+	//if (weights[1][1] == INT_MIN) {
+	//	start = current;
+	//}
+	//else {
+	//	//get first unweighted tile
+	//	std::list<MapTile*> queue = { current };
+	//	while (start == NULL && !queue.empty()) {
+	//		std::vector<MapTile*> neigh = getNeighbouringTiles(current);
+	//		for (int i = 0; i < neigh.size(); ++i) {
+	//			MapTile* tempTile = neigh.at(i);
+	//			if (std::find(visited.begin(), visited.end(), tempTile) == visited.end()) {
+	//				if (std::find(queue.begin(), queue.end(), tempTile) == queue.end()) {
+	//					queue.push_back(tempTile);
+	//				}
+	//			}
+	//		}
+	//		current = queue.front();
+	//		queue.pop_front();
+	//		if (weights[current->getX()][current->getY()] == INT_MIN) {
+	//			start == current;
+	//		}
+	//	}
+	//}
+	//if (start == NULL) {
+	//	std::cerr << "error getting next town - could not find position to start assigning weights" << std::endl;
+	//}
+	//else {
+	//	unvisited.push_back(start);
+	//	while (!unvisited.empty()) {
+	//		MapTile* nextTile = unvisited.front();
+	//		unvisited.pop_front();
+	//		int minAdjWeight = INT_MAX;
+	//		std::vector<MapTile*> neigh = getNeighbouringTiles(current);
+	//		for (int i = 0; i < neigh.size(); ++i) {
+	//			MapTile* tempTile = neigh.at(i);
+	//			if (std::find(visited.begin(), visited.end(), tempTile) == visited.end()) {
+	//				if (std::find(unvisited.begin(), unvisited.end(), tempTile) == unvisited.end()) {
+	//					unvisited.push_back(tempTile);
+	//				}
+	//			} else {
+	//				if (weights[tempTile->getX()][tempTile->getY()] < minAdjWeight) {
+	//					minAdjWeight = weights[tempTile->getX()][tempTile->getY()];
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+
+
+}
+
+double GameMap::getTileDistanceRank(int x, int y, int** arr) {
+	//if (arr[x][y] == -1) return -1;
+	//double distRank = 0;
+	//double distModifier = 0;
+	////if tier 1 contains city/town/boundary -> position invalid
+	////if tier 2 contains city/town/boundary -> at best boundary of town
+	//std::set<MapTile*> tier1, tier2, tier3;
+	//std::vector<MapTile*> neighbours = getNeighbouringTiles(m_gameMap[x][y]);
+	//for (int i = 0; i < m_size; ++i) {
+	//	for (int j = 0; j < m_size; ++j) {
+	//	}
+	//}
+	return 0.0;
+
 }
 
 std::vector<MapTile*> GameMap::getNeighbouringTiles(MapTile* tile) {
 	std::vector<MapTile*> neighbours;
-	int nOffset[8][2] = { { -1,0 },{ -1, -1 },{ 0, -1 },{ 1, -1 },{ 1, 0 },{ 1, 1 },{ 0, 1 },{ -1, 1 } };
+	//right, bottom right, bottom, bottom left, left, left top, top, top right
+	int nOffset[8][2] = { { 1, 0 },{ 1, 1 },{ 0, 1 },{ -1, 1 },{ -1,0 },{ -1, -1 },{ 0, -1 },{ 1, -1 } };
 	int tX = tile->getX();
 	int tY = tile->getY();
 	for (int i = 0; i < 8; ++i) {
-		if (((tX + nOffset[i][0]) > 0) && ((tX + nOffset[i][0]) < m_size) && ((tY + nOffset[i][1]) > 0) && ((tY + nOffset[i][1]) < m_size)) {
+		if (((tX + nOffset[i][0]) >= 0) && ((tX + nOffset[i][0]) < m_size) && ((tY + nOffset[i][1]) >= 0) && ((tY + nOffset[i][1]) < m_size)) {
 			neighbours.push_back(m_gameMap[(tX + nOffset[i][0])][(tY + nOffset[i][1])]);
 		}
 	}
@@ -230,10 +388,6 @@ void GameMap::findPath(MapTile* start, MapTile* end) {
 }
 
 void GameMap::countTilesFor(std::string type) {
-	
-}
-
-void GameMap::selectTownCenters() {
 	
 }
 

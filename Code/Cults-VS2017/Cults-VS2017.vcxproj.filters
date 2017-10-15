@@ -80,9 +80,6 @@
     <ClCompile Include="MapTile.cpp">
       <Filter>Source Files\Map</Filter>
     </ClCompile>
-    <ClCompile Include="myCity.cpp">
-      <Filter>Source Files\Map</Filter>
-    </ClCompile>
     <ClCompile Include="FollowerManager.cpp">
       <Filter>Source Files\Mechanics</Filter>
     </ClCompile>
@@ -166,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="MainMenuForm.cpp.cc">
       <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="City.cpp">
+      <Filter>Source Files\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

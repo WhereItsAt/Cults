@@ -131,7 +131,7 @@
     <ClCompile Include="MainMenuForm.cpp.cc" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="MapTile.cpp" />
-    <ClCompile Include="myCity.cpp" />
+    <ClCompile Include="City.cpp" />
     <ClCompile Include="nameByCountry.cpp" />
     <ClCompile Include="OptionsForm.cpp.cc" />
     <ClCompile Include="Policy.cpp" />
