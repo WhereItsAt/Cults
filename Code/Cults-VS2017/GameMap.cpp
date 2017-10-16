@@ -46,9 +46,9 @@ void GameMap::initializeGameMap(int size) {
 	}
 	
 	m_totalTiles = size*size;
-	m_cityTileMax = 0.4 * size;
+	m_cityTileMax = floor(0.4 * m_totalTiles);
 	m_cityTileCount = 0;
-	m_townTileMax = 0.2 * size;
+	m_townTileMax = floor(0.2 * m_totalTiles);
 	m_townTileCount = 0;
 	m_totalTownCount = 0;
 	m_ruralTileCount = 0;
@@ -175,65 +175,98 @@ void GameMap::generateTown(MapTile* center, int size) {
 	center->setType("town");
 	m_townTileCount++; //increment town tiles used
 	int townTileCount = 1; //track this towns tiles
-	std::vector<MapTile*> tempNeigh = getNeighbouringTiles(center);
 	std::vector<MapTile*> townTiles = { center };
 	std::set<MapTile*> neighbours;
-	for (int i = 0; i < tempNeigh.size(); ++i) {
-		if (tempNeigh.at(i)->getType().compare("city") != 0 || tempNeigh.at(i)->getType().compare("town") != 0) {
-			neighbours.insert(tempNeigh.at(i));
-		}
-	}
-	//std::set<MapTile*> neighbours(tempNeigh.begin(), tempNeigh.end());
-	while (townTileCount <= size) {
-		for (int i = 0; i < townTiles.size(); ++i) {
-			std::vector<MapTile*> newNeighbours = getNeighbouringTiles(townTiles.at(i));
-			for (int j = 0; j < newNeighbours.size(); ++j) {
-				if (tempNeigh.at(i)->getType().compare("city") != 0 || tempNeigh.at(i)->getType().compare("town") != 0) {
-					neighbours.insert(newNeighbours.at(i));
-				}
-			}
-		}
 
-		std::set<MapTile*>::iterator it = neighbours.begin();
-		std::advance(it, getRandomNumber(0, neighbours.size() - 1));
-		MapTile* townExpansion = *it;
-		neighbours.erase(it);
+	while (townTileCount <= size) {
+		std::vector<MapTile*> tempNeigh = getNeighbouringTiles(center);
+		std::vector<MapTile*> bestNeigh = getMaxWeightTiles(tempNeigh);
+		int randIndex = getRandomNumber(0, (bestNeigh.size() - 1));
+		MapTile* townExpansion = bestNeigh.at(randIndex);
 		townExpansion->setType("town");
 		townExpansion->setTileType(TileType::Town);
 		townTiles.push_back(townExpansion);
-
+		m_townTileCount++;
 		townTileCount++;
 	}
+
+	//for (int i = 0; i < tempNeigh.size(); ++i) {
+	//	if (tempNeigh.at(i)->getType().compare("city") != 0 || tempNeigh.at(i)->getType().compare("town") != 0) {
+	//		neighbours.insert(tempNeigh.at(i));
+	//	}
+	//}
+	////std::set<MapTile*> neighbours(tempNeigh.begin(), tempNeigh.end());
+	//while (townTileCount <= size) {
+	//	for (int i = 0; i < townTiles.size(); ++i) {
+	//		std::vector<MapTile*> newNeighbours = getNeighbouringTiles(townTiles.at(i));
+	//		for (int j = 0; j < newNeighbours.size(); ++j) {
+	//			if (tempNeigh.at(i)->getType().compare("city") != 0 || tempNeigh.at(i)->getType().compare("town") != 0) {
+	//				neighbours.insert(newNeighbours.at(i));
+	//			}
+	//		}
+	//	}
+	//	std::set<MapTile*>::iterator it = neighbours.begin();
+	//	std::advance(it, getRandomNumber(0, neighbours.size() - 1));
+	//	MapTile* townExpansion = *it;
+	//	neighbours.erase(it);
+	//	townExpansion->setType("town");
+	//	townExpansion->setTileType(TileType::Town);
+	//	townTiles.push_back(townExpansion);
+	//	m_townTileCount++;
+	//	townTileCount++;
+	//}
+}
+
+std::vector<MapTile*> GameMap::getMaxWeightTiles(std::vector<MapTile*> candidates) {
+	std::vector<MapTile*> victors;
+	int maxWeight = INT_MIN;
+	for (int i = 0; i < candidates.size(); ++i) {
+		if (m_currentWeights[candidates.at(i)->getX()][candidates.at(i)->getY()] > maxWeight) {
+			maxWeight = m_currentWeights[candidates.at(i)->getX()][candidates.at(i)->getY()];
+		}
+	}
+	for (int i = 0; i < candidates.size(); ++i) {
+		if (m_currentWeights[candidates.at(i)->getX()][candidates.at(i)->getY()] = maxWeight) {
+			victors.push_back(candidates.at(i));
+		}
+	}
+	return victors;
 }
 
 void GameMap::generateAllTowns() {
-	int townSize = getRandomNumber(m_townMinSize, m_townMaxSize); //set this towns size, random number between min and max
-
-
-}
-
-void GameMap::selectTownCenters() {
-
+	int totalTowns = getRandomNumber(m_minTowns, m_maxTowns);
+	for (int i = 0; i < totalTowns; ++i) {
+		int townSize = getRandomNumber(m_townMinSize, m_townMaxSize); //set this towns size, random number between min and max
+		if (((townSize + m_townTileCount) > m_townTileMax) && ((townSize + m_townTileCount) > m_townTileMax)) {
+			//add tiles to existing towns and quit?
+			//change tile count and add to city/rural count evenly? 
+				//would have to call reduce city after towns to use updated counts
+				//in a way would invalidate the town placement, but reducing the city just means theyd be further away so no issue
+			//or do nothing?
+		}
+		MapTile* next = getNextTownCenter();
+		generateTown(next, townSize);
+	}
 }
 
 MapTile* GameMap::getNextTownCenter() {
 	//set boundary and town/city tiles to -1, set unexplored tiles to INT_MIN
-	int** weights = new int*[m_size];
+	int** m_currentWeights = new int*[m_size];
 	for (int i = 0; i < m_size; ++i) {
-		weights[i] = new int[m_size];
+		m_currentWeights[i] = new int[m_size];
 		if (i == 0 || (i + 1) == m_size) {
-			std::fill(weights[i], weights[i] + sizeof(weights[i]), -1);
+			std::fill(m_currentWeights[i], m_currentWeights[i] + sizeof(m_currentWeights[i]), -1);
 		} else {
-			std::fill(weights[i], weights[i] + sizeof(weights[i]), INT_MIN);
-			weights[i][0] = -1;
-			weights[i][(m_size - 1)] = -1;
+			std::fill(m_currentWeights[i], m_currentWeights[i] + sizeof(m_currentWeights[i]), INT_MIN);
+			m_currentWeights[i][0] = -1;
+			m_currentWeights[i][(m_size - 1)] = -1;
 		}
 	}
 
 	for (int i = 0; i < m_size; ++i) {
 		for (int j = 0; j < m_size; ++j) {
 			if (m_gameMap[i][j]->getType().compare("town") == 0 || m_gameMap[i][j]->getType().compare("city") == 0) {
-				weights[i][j] = -1;
+				m_currentWeights[i][j] = -1;
 			}
 		}
 	}
@@ -249,7 +282,7 @@ MapTile* GameMap::getNextTownCenter() {
 	std::list<MapTile*> unvisited, unexplored;
 	for (int i = 0; i < m_size; ++i) {
 		for (int j = 0; j < m_size; ++j) {
-			if (weights[i][j] == -1) {
+			if (m_currentWeights[i][j] == -1) {
 				explored.push_back(m_gameMap[i][j]);
 			} else {
 				unexplored.push_back(m_gameMap[i][j]);
@@ -270,8 +303,8 @@ MapTile* GameMap::getNextTownCenter() {
 			for (int i = 0; i < neigh.size(); ++i) {
 				MapTile* tempTile = neigh.at(i);
 				if (std::find(visited.begin(), visited.end(), tempTile) == visited.end()) {
-					if (weights[current->getX()][current->getY()] < minAdjWeight) {
-						minAdjWeight = weights[current->getX()][current->getY()];
+					if (m_currentWeights[current->getX()][current->getY()] < minAdjWeight) {
+						minAdjWeight = m_currentWeights[current->getX()][current->getY()];
 					}
 					unvisited.push_back(tempTile);
 				}
@@ -283,7 +316,7 @@ MapTile* GameMap::getNextTownCenter() {
 				std::cerr << "error getting next town - could not find adjacent unvisited tile";
 			}
 
-			weights[current->getX()][current->getY()] = newWeight;
+			m_currentWeights[current->getX()][current->getY()] = newWeight;
 
 			visited.push_back(current);
 			explored.push_back(current);
@@ -294,8 +327,26 @@ MapTile* GameMap::getNextTownCenter() {
 		unvisited.push_back(newSpot);
 	}
 
+	int maxWeight = INT_MIN;
+	std::vector<MapTile*> possibleTowns;
+	MapTile* candidate = NULL;
+	for (int i = 0; i < m_size; ++i) {
+		for (int j = 0; j < m_size; ++j) {
+			if (m_currentWeights[i][j] > maxWeight) {
+				candidate = m_gameMap[i][j];
+				possibleTowns.clear();
+				maxWeight = m_currentWeights[i][j];
+				possibleTowns.push_back(candidate);
+			} else if (m_currentWeights[i][j] == maxWeight) {
+				candidate = m_gameMap[i][j];
+				possibleTowns.push_back(candidate);
+			}
+		}
+	}
+	int randIndex = getRandomNumber(0, (possibleTowns.size() - 1));
+	return possibleTowns.at(randIndex);
 	//MapTile* current = m_gameMap[1][1];
-	//if (weights[1][1] == INT_MIN) {
+	//if (m_currentWeights[1][1] == INT_MIN) {
 	//	start = current;
 	//}
 	//else {
@@ -313,13 +364,13 @@ MapTile* GameMap::getNextTownCenter() {
 	//		}
 	//		current = queue.front();
 	//		queue.pop_front();
-	//		if (weights[current->getX()][current->getY()] == INT_MIN) {
+	//		if (m_currentWeights[current->getX()][current->getY()] == INT_MIN) {
 	//			start == current;
 	//		}
 	//	}
 	//}
 	//if (start == NULL) {
-	//	std::cerr << "error getting next town - could not find position to start assigning weights" << std::endl;
+	//	std::cerr << "error getting next town - could not find position to start assigning m_currentWeights" << std::endl;
 	//}
 	//else {
 	//	unvisited.push_back(start);
@@ -335,31 +386,13 @@ MapTile* GameMap::getNextTownCenter() {
 	//					unvisited.push_back(tempTile);
 	//				}
 	//			} else {
-	//				if (weights[tempTile->getX()][tempTile->getY()] < minAdjWeight) {
-	//					minAdjWeight = weights[tempTile->getX()][tempTile->getY()];
+	//				if (m_currentWeights[tempTile->getX()][tempTile->getY()] < minAdjWeight) {
+	//					minAdjWeight = m_currentWeights[tempTile->getX()][tempTile->getY()];
 	//				}
 	//			}
 	//		}
 	//	}
 	//}
-
-
-}
-
-double GameMap::getTileDistanceRank(int x, int y, int** arr) {
-	//if (arr[x][y] == -1) return -1;
-	//double distRank = 0;
-	//double distModifier = 0;
-	////if tier 1 contains city/town/boundary -> position invalid
-	////if tier 2 contains city/town/boundary -> at best boundary of town
-	//std::set<MapTile*> tier1, tier2, tier3;
-	//std::vector<MapTile*> neighbours = getNeighbouringTiles(m_gameMap[x][y]);
-	//for (int i = 0; i < m_size; ++i) {
-	//	for (int j = 0; j < m_size; ++j) {
-	//	}
-	//}
-	return 0.0;
-
 }
 
 std::vector<MapTile*> GameMap::getNeighbouringTiles(MapTile* tile) {

@@ -86,3 +86,19 @@ TileType::t_tileType MapTile::translateStringToType(std::string type) {
 	}
 	return TileType::Blank;
 }
+
+std::string MapTile::translateTypeToString(TileType::t_tileType type) {
+	int t = type;
+	switch (t) {
+		case 0:
+			return "blank";
+		case 1:
+			return "city";
+		case 2:
+			return "town";
+		case 3:
+			return "rural";
+		default:
+			return "blank";
+	}
+}

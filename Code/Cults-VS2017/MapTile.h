@@ -33,6 +33,7 @@ class MapTile {
 		void printTile();
 		void setTileType(TileType::t_tileType tt);
 		TileType::t_tileType translateStringToType(std::string type);
+		std::string translateTypeToString(TileType::t_tileType type);
 		TileType::t_tileType getTileType();
 	
 	private:

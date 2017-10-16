@@ -31,12 +31,11 @@ class GameMap {
 		void generateCity();
 		void reduceCity();
 		void generateTown(MapTile* center, int size);
+		std::vector<MapTile*> getMaxWeightTiles(std::vector<MapTile*> candidates);
 		void generateAllTowns();
 		void findPath(MapTile* start, MapTile* end);
 		void countTilesFor(std::string type);
-		void selectTownCenters();
 		MapTile * getNextTownCenter();
-		double getTileDistanceRank(int x, int y, int ** arr);
 		void setRuralArea();
 		void initializeGameMap(int size);
 		std::vector<MapTile*> getNeighbouringTiles(MapTile* tile);
@@ -63,6 +62,7 @@ class GameMap {
 		MapTile* m_citySouthVertex;
 		MapTile* m_cityWestVertex;
 		MapTile* m_cityEastVertex;
+		int** m_currentWeights;
     
 };
 
