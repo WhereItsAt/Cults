@@ -30,11 +30,15 @@ class MapTile {
 		void setRoad(bool road);
 		int getX();
 		int getY();
+		int peekX() const;
+		int peekY() const;
 		void printTile();
 		void setTileType(TileType::t_tileType tt);
 		TileType::t_tileType translateStringToType(std::string type);
 		std::string translateTypeToString(TileType::t_tileType type);
 		TileType::t_tileType getTileType();
+		bool operator<(const MapTile& rhs) const;
+		bool operator==(const MapTile & rhs) const;
 	
 	private:
 		bool m_hasRoad;

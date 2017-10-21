@@ -23,6 +23,7 @@
 #include <random>
 #include <set>
 #include <algorithm>
+#include <iterator>
 
 GameMap::GameMap() {
 	initializeGameMap(m_defaultSize);
@@ -52,8 +53,6 @@ void GameMap::initializeGameMap(int size) {
 	m_townTileCount = 0;
 	m_totalTownCount = 0;
 	m_ruralTileCount = 0;
-	
-	//floor
 	m_minTowns = floor(m_townTileMax / m_townMinSize);
 	m_maxTowns = floor(m_townTileMax / m_townMaxSize);
 }
@@ -162,9 +161,16 @@ void GameMap::generateCityCenter() {
 
 }
 
+void GameMap::generateMap() {
+	generateCity();
+	setRuralArea();
+	generateAllTowns();
+}
+
 void GameMap::generateCity() {
 	generateCityCenter();
-	setRuralArea();
+	//fillCity()
+	//reduceCity()
 }
 
 void GameMap::reduceCity() {
@@ -178,8 +184,23 @@ void GameMap::generateTown(MapTile* center, int size) {
 	std::vector<MapTile*> townTiles = { center };
 	std::set<MapTile*> neighbours;
 
+
+	//ok need to do a few more things here. 
+		//need to remove tiles if all neighbours are town and/or weight = -1
+		//need to make tempNeigh a set so no duplicates
+		//instead of passing around so many goddamn vectors, i should delete the lowest weighted tiles out of tempNeigh, its a temporary collection anyway who cares about losing elements we have stored elsewhere
+		//dont add any tiles in townTiles to tempneigh <-
 	while (townTileCount <= size) {
-		std::vector<MapTile*> tempNeigh = getNeighbouringTiles(center);
+		std::set<MapTile*> tempNeigh;
+		for (int i = 0; i < townTiles.size(); ++i) {
+			std::vector<MapTile*> newNeigh = getNeighbouringTiles(townTiles.at(i));
+			//std::copy(newNeigh.begin(), newNeigh.end(), std::inserter(tempNeigh, tempNeigh.end()));
+			for (int j = 0; j < newNeigh.size(); ++j) {
+				if ((newNeigh.at(j)->getType().compare("town") != 0) && (newNeigh.at(j)->getType().compare("city") != 0)) {
+					tempNeigh.insert(newNeigh.at(j));
+				}
+			}
+		}
 		std::vector<MapTile*> bestNeigh = getMaxWeightTiles(tempNeigh);
 		int randIndex = getRandomNumber(0, (bestNeigh.size() - 1));
 		MapTile* townExpansion = bestNeigh.at(randIndex);
@@ -217,17 +238,18 @@ void GameMap::generateTown(MapTile* center, int size) {
 	//}
 }
 
-std::vector<MapTile*> GameMap::getMaxWeightTiles(std::vector<MapTile*> candidates) {
+std::vector<MapTile*> GameMap::getMaxWeightTiles(std::set<MapTile*> candidates) {
 	std::vector<MapTile*> victors;
 	int maxWeight = INT_MIN;
-	for (int i = 0; i < candidates.size(); ++i) {
-		if (m_currentWeights[candidates.at(i)->getX()][candidates.at(i)->getY()] > maxWeight) {
-			maxWeight = m_currentWeights[candidates.at(i)->getX()][candidates.at(i)->getY()];
+	std::set<MapTile*>::iterator it;
+	for (it = candidates.begin(); it != candidates.end(); ++it) {
+		if (m_currentWeights[(*it)->getX()][(*it)->getY()] > maxWeight) {
+			maxWeight = m_currentWeights[(*it)->getX()][(*it)->getY()];
 		}
 	}
-	for (int i = 0; i < candidates.size(); ++i) {
-		if (m_currentWeights[candidates.at(i)->getX()][candidates.at(i)->getY()] = maxWeight) {
-			victors.push_back(candidates.at(i));
+	for (it = candidates.begin(); it != candidates.end(); ++it) {
+		if (m_currentWeights[(*it)->getX()][(*it)->getY()] = maxWeight) {
+			victors.push_back((*it));
 		}
 	}
 	return victors;
@@ -250,20 +272,20 @@ void GameMap::generateAllTowns() {
 }
 
 MapTile* GameMap::getNextTownCenter() {
-	//set boundary and town/city tiles to -1, set unexplored tiles to INT_MIN
+	//set up weights - map boundary/town/city tiles to -1, unexplored tiles to INT_MIN
 	int** m_currentWeights = new int*[m_size];
+
 	for (int i = 0; i < m_size; ++i) {
 		m_currentWeights[i] = new int[m_size];
 		if (i == 0 || (i + 1) == m_size) {
 			std::fill(m_currentWeights[i], m_currentWeights[i] + sizeof(m_currentWeights[i]), -1);
-		} else {
+		}
+		else {
 			std::fill(m_currentWeights[i], m_currentWeights[i] + sizeof(m_currentWeights[i]), INT_MIN);
 			m_currentWeights[i][0] = -1;
 			m_currentWeights[i][(m_size - 1)] = -1;
 		}
-	}
 
-	for (int i = 0; i < m_size; ++i) {
 		for (int j = 0; j < m_size; ++j) {
 			if (m_gameMap[i][j]->getType().compare("town") == 0 || m_gameMap[i][j]->getType().compare("city") == 0) {
 				m_currentWeights[i][j] = -1;
@@ -417,7 +439,8 @@ int GameMap::getRandomNumber(int min, int max) {
 }
 
 void GameMap::findPath(MapTile* start, MapTile* end) {
-	
+	std::list<MapTile*> path;
+	double euclideanDistance = sqrt(((pow((start->getX() - end->getX()), 2)) + (pow((start->getY() - end->getY()), 2))));
 }
 
 void GameMap::countTilesFor(std::string type) {
@@ -440,8 +463,8 @@ void GameMap::setRuralArea() {
 int main(int ac, char** av) {
 	std::srand(time(0));
 	GameMap testMap = GameMap(25);
-	testMap.generateCity();
-	testMap.printOnly("rural");
+	testMap.generateMap();
+	testMap.printMap();
 	
 	return 0;
 }*/

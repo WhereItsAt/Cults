@@ -17,6 +17,7 @@
 #include "MapTile.h"
 #include <vector>
 #include <string>
+#include <set>
 
 class GameMap {
 	public:
@@ -27,11 +28,12 @@ class GameMap {
 		void printMap();
 		MapTile* getMiddle();
 		void generateCityCenter();
+		void generateMap();
 		void printOnly(std::string type);
 		void generateCity();
 		void reduceCity();
 		void generateTown(MapTile* center, int size);
-		std::vector<MapTile*> getMaxWeightTiles(std::vector<MapTile*> candidates);
+		std::vector<MapTile*> getMaxWeightTiles(std::set<MapTile*> candidates);
 		void generateAllTowns();
 		void findPath(MapTile* start, MapTile* end);
 		void countTilesFor(std::string type);

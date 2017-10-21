@@ -62,6 +62,14 @@ int MapTile::getY() {
 	return m_y;
 }
 
+int MapTile::peekX() const {
+	return m_x;
+}
+
+int MapTile::peekY() const {
+	return m_y;
+}
+
 void MapTile::printTile() {
 	std::cout << m_stringType << "-(" << m_x << "," << m_y << ")";
 }
@@ -101,4 +109,14 @@ std::string MapTile::translateTypeToString(TileType::t_tileType type) {
 		default:
 			return "blank";
 	}
+}
+
+bool MapTile::operator<(const MapTile& rhs) const
+{
+	return ((m_x < rhs.peekX()) && (m_y < rhs.peekY()));
+}
+
+bool MapTile::operator==(const MapTile& rhs) const
+{
+	return ((m_x == rhs.peekX()) && (m_y == rhs.peekY()));
 }
