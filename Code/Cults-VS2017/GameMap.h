@@ -37,14 +37,18 @@ public:
 	void generateTown(MapTile* center, int size);
 	std::unordered_set<MapTile*> getTilesWithWeight(int weight, bool findMax);
 	std::unordered_set<MapTile*> getTilesWithWeight(int weight, bool findMax, std::unordered_set<MapTile*> tiles);
+	int getManhattanDistance(MapTile * a, MapTile * b);
 	void generateAllTowns();
 	void findPath(MapTile* start, MapTile* end);
+	std::list<MapTile*> aStar(MapTile * start, MapTile * end);
 	double getEuclideanDistance(MapTile * a, MapTile * b);
+	int getDiagonalDistance(MapTile * a, MapTile * b);
 	void countTilesFor(std::string type);
 	MapTile * getNextTownCenter();
 	void setRuralArea();
 	void PrintToFile(std::string output);
 	void visualiseMapAsPpm();
+	void visualiseMapWithPathAsPpm(MapTile * start, MapTile * end);
 	void visualiseMapAsBmp();
 	void initializeGameMap(int size);
 	std::vector<MapTile*> getNeighbouringTiles(MapTile* tile, bool rightStart);

@@ -29,6 +29,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <boost/algorithm/string/replace.hpp>
+#include <chrono>
 
 
 GameMap::GameMap() {
@@ -191,11 +193,105 @@ void GameMap::findPath(MapTile* start, MapTile* end) {
 	std::list<MapTile*> path;
 	double ed = getEuclideanDistance(start, end);
 	//int subRanges = floor(ed / 4);
+	//split in to sub areas, 
+	//generate random points within sub area, 
+	//form sub path through points, 
+	//link sub paths together to form actual path
 
+}
+
+struct pathNode {
+public:
+	pathNode() { tile = NULL; };
+	pathNode(MapTile* nodeTile) { tile = nodeTile; };
+	int f;
+	int g;
+	int h;
+	MapTile* tile;
+	MapTile* next;
+	MapTile* previous;
+	bool pathNode::operator==(const pathNode& rhs) const { return ((f == rhs.f) && (g == rhs.g) && (h == rhs.h) && (tile == rhs.tile) && (next == rhs.next) && (previous == rhs.previous)); };
+};
+
+std::list<MapTile*> GameMap::aStar(MapTile* start, MapTile* end) {
+	std::list<pathNode> nodePath;
+	std::list<MapTile*> path;
+	//std::map<MapTile*, pathNode> tileToNode;
+	//discovered = open, visited = closed
+	std::unordered_set<pathNode> visited, discovered;
+	pathNode first(start);
+	first.g = 0;
+	first.h = getEuclideanDistance(start, end);
+	first.f = first.g + first.h;
+	first.previous = NULL;
+	discovered.insert(first);
+	nodePath.push_back(first);
+	//tileToNode.insert(std::make_pair(start, first));
+
+	while (!discovered.empty()) {
+		//find discovered element, de, with lowerst f
+		//remove de from discovered
+		//get neighbours for de and set neighbours previous to de
+		//for each neighbour, check if its the goal, else g = previous.g + 1, h = euclidean distance to end, f = h+g
+		int minF = INT_MAX;
+		pathNode minElement;
+		for (std::unordered_set<pathNode>::iterator it = discovered.begin(); it != discovered.end(); ++it) {
+			if ((*it).f < minF) {
+				minF = (*it).f;
+				minElement = (*it);
+			}
+		}
+		discovered.erase(minElement);
+		std::vector<MapTile*> neighbours = getNeighbouringTiles(minElement.tile);
+		for (int i = 0; i < neighbours.size(); ++i) {
+			pathNode nextNode(neighbours.at(i));
+			nextNode.previous = minElement.tile;
+			if (neighbours.at(i) == end) {
+				//found goal node, path complete, end search
+				//iterate backwards, call push front on list for each node until previous == null, then return list
+			}
+			nextNode.g = minElement.g + 1;
+			nextNode.h = getEuclideanDistance(neighbours.at(i), end);
+			nextNode.f = nextNode.g + nextNode.h;
+			
+			bool skip = false;
+
+			//if (pathnode with same tile is in open/discovered list and has lower f, skip)
+			for (std::unordered_set<pathNode>::iterator it = discovered.begin(); it != discovered.end(); ++it) {
+				if ((*it).tile == neighbours.at(i) && (*it).f < nextNode.f) {
+					//skip
+					skip = true;
+				}
+			}
+			if (!skip) {
+				//if (pathnode with same tile is in closed/visited list and has lower f, skip. else add node to open list
+				for (std::unordered_set<pathNode>::iterator it = visited.begin(); it != visited.end(); ++it) {
+					if ((*it).tile == neighbours.at(i) && (*it).f < nextNode.f) {
+						//skip
+						skip = true;
+					}
+				}
+			}
+			if (!skip) {
+				discovered.insert(nextNode);
+			}
+		}
+		visited.insert(minElement);
+	}
+
+	return path;
 }
 
 double GameMap::getEuclideanDistance(MapTile* a, MapTile* b) {
 	return sqrt(((pow((a->getX() - b->getX()), 2)) + (pow((a->getY() - b->getY()), 2))));
+}
+
+int GameMap::getDiagonalDistance(MapTile* a, MapTile* b) {
+	return std::max(std::abs(a->getX() - b->getX()), std::abs(a->getY() - b->getY()));
+}
+
+int GameMap::getManhattanDistance(MapTile* a, MapTile* b) {
+	return std::abs(a->getX() - b->getY()) + std::abs(a->getY() - b->getY());
 }
 
 void GameMap::generateAllTowns() {
@@ -226,7 +322,7 @@ void GameMap::generateTown(MapTile* center, int size) {
 	while (townTileCount <= size) {
 		std::unordered_set<MapTile*>::iterator townTileIterator;
 		for (townTileIterator = townTiles.begin(); townTileIterator != townTiles.end(); ++townTileIterator) {
-			std::vector<MapTile*> newNeighbours = getNeighbouringTiles((*townTileIterator), true);
+			std::vector<MapTile*> newNeighbours = getNeighbouringTiles((*townTileIterator));
 			for (int j = 0; j < newNeighbours.size(); ++j) {
 				//if ((newNeighbours.at(j)->getType().compare("town") != 0) && (newNeighbours.at(j)->getType().compare("city") != 0)) {
 				if (newNeighbours.at(j)->getWeight() != -1) {
@@ -234,9 +330,15 @@ void GameMap::generateTown(MapTile* center, int size) {
 				}
 			}
 		}
-		std::unordered_set<MapTile*> bestNeigh = getTilesWithWeight(0, true, neighbours);
-		int randIndex = getRandomNumber(0, (bestNeigh.size() - 1));
-		std::unordered_set<MapTile*>::iterator it = bestNeigh.begin();
+		std::unordered_set<MapTile*> bestNeighbours = getTilesWithWeight(0, true, neighbours);
+		std::map<int, std::unordered_set<MapTile*> > adjustedWeights;
+		for (std::unordered_set<MapTile*>::iterator it = bestNeighbours.begin(); it != bestNeighbours.end(); ++it) {
+			//adjustedWeights.insert(std::make_pair(((*it)->getWeight() - /* distance from center */1),(*it)));
+			adjustedWeights[((*it)->getWeight() - getDiagonalDistance((*it),center))].insert((*it));
+		}
+		std::unordered_set<MapTile*> evenBetterNeighbours;
+		int randIndex = getRandomNumber(0, (bestNeighbours.size() - 1));
+		std::unordered_set<MapTile*>::iterator it = bestNeighbours.begin();
 		advance(it, randIndex);
 		MapTile* townExpansion = (*it);
 		townExpansion->setType("town");
@@ -247,32 +349,6 @@ void GameMap::generateTown(MapTile* center, int size) {
 		m_townTileCount++;
 		townTileCount++;
 	}
-
-	//for (int i = 0; i < tempNeigh.size(); ++i) {
-	//	if (tempNeigh.at(i)->getType().compare("city") != 0 || tempNeigh.at(i)->getType().compare("town") != 0) {
-	//		neighbours.insert(tempNeigh.at(i));
-	//	}
-	//}
-	////std::set<MapTile*> neighbours(tempNeigh.begin(), tempNeigh.end());
-	//while (townTileCount <= size) {
-	//	for (int i = 0; i < townTiles.size(); ++i) {
-	//		std::vector<MapTile*> newNeighbours = getNeighbouringTiles(townTiles.at(i));
-	//		for (int j = 0; j < newNeighbours.size(); ++j) {
-	//			if (tempNeigh.at(i)->getType().compare("city") != 0 || tempNeigh.at(i)->getType().compare("town") != 0) {
-	//				neighbours.insert(newNeighbours.at(i));
-	//			}
-	//		}
-	//	}
-	//	std::set<MapTile*>::iterator it = neighbours.begin();
-	//	std::advance(it, getRandomNumber(0, neighbours.size() - 1));
-	//	MapTile* townExpansion = *it;
-	//	neighbours.erase(it);
-	//	townExpansion->setType("town");
-	//	townExpansion->setTileType(TileType::Town);
-	//	townTiles.push_back(townExpansion);
-	//	m_townTileCount++;
-	//	townTileCount++;
-	//}
 }
 
 MapTile* GameMap::getNextTownCenter() {
@@ -290,54 +366,6 @@ MapTile* GameMap::getNextTownCenter() {
 	std::unordered_set<MapTile*>::iterator it(possibleTowns.begin());
 	advance(it, randIndex);
 	return (*it);
-	//MapTile* current = m_gameMap[1][1];
-	//if (m_currentWeights[1][1] == INT_MIN) {
-	//	start = current;
-	//}
-	//else {
-	//	//get first unweighted tile
-	//	std::list<MapTile*> queue = { current };
-	//	while (start == NULL && !queue.empty()) {
-	//		std::vector<MapTile*> neigh = getNeighbouringTiles(current);
-	//		for (int i = 0; i < neigh.size(); ++i) {
-	//			MapTile* tempTile = neigh.at(i);
-	//			if (std::find(visited.begin(), visited.end(), tempTile) == visited.end()) {
-	//				if (std::find(queue.begin(), queue.end(), tempTile) == queue.end()) {
-	//					queue.push_back(tempTile);
-	//				}
-	//			}
-	//		}
-	//		current = queue.front();
-	//		queue.pop_front();
-	//		if (m_currentWeights[current->getX()][current->getY()] == INT_MIN) {
-	//			start == current;
-	//		}
-	//	}
-	//}
-	//if (start == NULL) {
-	//	std::cerr << "error getting next town - could not find position to start assigning m_currentWeights" << std::endl;
-	//}
-	//else {
-	//	unvisited.push_back(start);
-	//	while (!unvisited.empty()) {
-	//		MapTile* nextTile = unvisited.front();
-	//		unvisited.pop_front();
-	//		int minAdjWeight = INT_MAX;
-	//		std::vector<MapTile*> neigh = getNeighbouringTiles(current);
-	//		for (int i = 0; i < neigh.size(); ++i) {
-	//			MapTile* tempTile = neigh.at(i);
-	//			if (std::find(visited.begin(), visited.end(), tempTile) == visited.end()) {
-	//				if (std::find(unvisited.begin(), unvisited.end(), tempTile) == unvisited.end()) {
-	//					unvisited.push_back(tempTile);
-	//				}
-	//			} else {
-	//				if (m_currentWeights[tempTile->getX()][tempTile->getY()] < minAdjWeight) {
-	//					minAdjWeight = m_currentWeights[tempTile->getX()][tempTile->getY()];
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
 }
 
 std::unordered_set<MapTile*> GameMap::getTilesWithWeight(int weight, bool findMax) {
@@ -391,7 +419,7 @@ std::unordered_set<MapTile*> GameMap::getTilesWithWeight(int weight, bool findMa
 	return weights[weight];
 }
 
-std::vector<MapTile*> GameMap::getNeighbouringTiles(MapTile* tile, bool rightStart) {
+std::vector<MapTile*> GameMap::getNeighbouringTiles(MapTile* tile, bool rightStart = true) {
 	std::vector<MapTile*> neighbours;
 	std::vector<std::pair<int, int> > deltas;
 	if (rightStart) {
@@ -451,7 +479,7 @@ void GameMap::calculateWeights() {
 	while (!currentTier.empty()) {
 		std::unordered_set<MapTile*> nextTier;
 		for (std::unordered_set<MapTile*>::iterator it = currentTier.begin(); it != currentTier.end(); ++it) {
-			std::vector<MapTile*> neighbours = getNeighbouringTiles((*it), true);
+			std::vector<MapTile*> neighbours = getNeighbouringTiles((*it));
 			for (int i = 0; i < neighbours.size(); ++i) {
 				if (neighbours[i]->getWeight() == INT_MAX) {
 					neighbours[i]->setWeight(currentWeight + 1);
@@ -517,14 +545,11 @@ void GameMap::visualiseMapAsPpm() {
 		for (int j = 0; j < m_gameMap[i].size(); ++j) {
 			if (m_gameMap[i][j]->getType().compare("blank") == 0) {
 				fs << "255 0 0" << "	";
-			}
-			else if (m_gameMap[i][j]->getType().compare("city") == 0) {
+			} else if (m_gameMap[i][j]->getType().compare("city") == 0) {
 				fs << "115 115 115" << "	";
-			}
-			else if (m_gameMap[i][j]->getType().compare("town") == 0) {
+			} else if (m_gameMap[i][j]->getType().compare("town") == 0) {
 				fs << "0 0 255" << "	";
-			}
-			else if (m_gameMap[i][j]->getType().compare("rural") == 0) {
+			} else if (m_gameMap[i][j]->getType().compare("rural") == 0) {
 				fs << "0 255 0" << "	";
 			}
 		}
@@ -533,229 +558,45 @@ void GameMap::visualiseMapAsPpm() {
 	fs.close();
 }
 
-void GameMap::visualiseMapAsBmp() {
-	//red 255 0 0 -city
-	//green 0 255 0 -rural
-	//blue 0 0 255 -town
-	//white 255 255 255 -blank
-	unsigned char *img = NULL;
-	int filesize = 54 + (3 * m_size*m_size);
-	int **red = new int*[m_size];
-	int **green = new int*[m_size];
-	int **blue = new int*[m_size];
-	for (int i = 0; i < m_size; ++i) {
-		red[i] = new int[m_size];
-		green[i] = new int[m_size];
-		blue[i] = new int[m_size];
-	}
-
-	for (int i = 0; i < m_size; ++i) {
-		for (int j = 0; j < m_size; ++j) {
-			if (m_gameMap[i][j]->getType().compare("blank") == 0) {
-				red[i][j] = 255;
-				green[i][j] = 255;
-				blue[i][j] = 255;
-			}
-			else if (m_gameMap[i][j]->getType().compare("city") == 0) {
-				red[i][j] = 255;
-				green[i][j] = 0;
-				blue[i][j] = 0;
-			}
-			else if (m_gameMap[i][j]->getType().compare("town") == 0) {
-				red[i][j] = 0;
-				green[i][j] = 0;
-				blue[i][j] = 255;
-			}
-			else if (m_gameMap[i][j]->getType().compare("rural") == 0) {
-				red[i][j] = 0;
-				green[i][j] = 255;
-				blue[i][j] = 0;
-			}
-		}
-	}
-
-	img = (unsigned char *)malloc(3 * m_size*m_size);
-	memset(img, 0, 3 * m_size*m_size);
-
-	for (int i = 0; i<m_size; i++)
-	{
-		for (int j = 0; j<m_size; j++)
-		{
-			int x = i;
-			int y = (m_size - 1) - j;
-			int r = red[i][j] * 255;
-			int g = green[i][j] * 255;
-			int b = blue[i][j] * 255;
-			if (r > 255) r = 255;
-			if (g > 255) g = 255;
-			if (b > 255) b = 255;
-			img[(x + y*m_size) * 3 + 2] = (unsigned char)(r);
-			img[(x + y*m_size) * 3 + 1] = (unsigned char)(g);
-			img[(x + y*m_size) * 3 + 0] = (unsigned char)(b);
-		}
-	}
-
-	unsigned char bmpfileheader[14] = { 'B','M', 0,0,0,0, 0,0, 0,0, 54,0,0,0 };
-	unsigned char bmpinfoheader[40] = { 40,0,0,0, 0,0,0,0, 0,0,0,0, 1,0, 24,0 };
-	unsigned char bmppad[3] = { 0,0,0 };
-
-	bmpfileheader[2] = (unsigned char)(filesize);
-	bmpfileheader[3] = (unsigned char)(filesize >> 8);
-	bmpfileheader[4] = (unsigned char)(filesize >> 16);
-	bmpfileheader[5] = (unsigned char)(filesize >> 24);
-
-	bmpinfoheader[4] = (unsigned char)(m_size);
-	bmpinfoheader[5] = (unsigned char)(m_size >> 8);
-	bmpinfoheader[6] = (unsigned char)(m_size >> 16);
-	bmpinfoheader[7] = (unsigned char)(m_size >> 24);
-	bmpinfoheader[8] = (unsigned char)(m_size);
-	bmpinfoheader[9] = (unsigned char)(m_size >> 8);
-	bmpinfoheader[10] = (unsigned char)(m_size >> 16);
-	bmpinfoheader[11] = (unsigned char)(m_size >> 24);
-
+void GameMap::visualiseMapWithPathAsPpm(MapTile* start, MapTile* end) {
+	std::list<MapTile*> path = aStar(start, end);
 	std::fstream fs;
-	fs.open("output.bmp", std::fstream::in | std::fstream::out | std::fstream::trunc);
-	for (int i = 0; i < 14; ++i) {
-		fs << bmpfileheader[i];
-	}
-	for (int i = 0; i < 40; ++i) {
-		fs << bmpinfoheader[i];
-	}
-	//fwrite(bmpfileheader, 1, 14, fs);
-	//fwrite(bmpinfoheader, 1, 40, fs);
-	for (int i = 0; i < m_size; ++i)
-	{
-		//fwrite(img + (m_size*(m_size - i - 1) * 3), 3, m_size, fs);
-		unsigned char* tempChar = img + (m_size*(m_size - i - 1) * 3);
-		for (int j = 0; j < m_size; ++j) {
-			fs << tempChar;
-			tempChar += 3;
+	std::string fileName = getDateTimeNow() + "_mapImageOutput.ppm";
+	boost::replace_all(fileName, ":", "");
+	boost::replace_all(fileName, "\n", "");
+	boost::replace_all(fileName, " ", "_");
+	fs.open(fileName, std::fstream::in | std::fstream::out | std::fstream::trunc);
+	fs << "P3" << std::endl;
+	std::string size = std::to_string(m_size);
+	fs << size << " " << size << std::endl;
+	fs << "255" << std::endl;
+	for (int i = 0; i < m_gameMap.size(); ++i) {
+		for (int j = 0; j < m_gameMap[i].size(); ++j) {
+			if (std::find(path.begin(), path.end(), m_gameMap[i][j]) != path.end()) {
+				fs << "255 0 0" << "	";
+			} else {
+				if (m_gameMap[i][j]->getType().compare("blank") == 0) {
+					fs << "0 0 0" << "	";
+				} else if (m_gameMap[i][j]->getType().compare("city") == 0) {
+					fs << "115 115 115" << "	";
+				} else if (m_gameMap[i][j]->getType().compare("town") == 0) {
+					fs << "0 0 255" << "	";
+				} else if (m_gameMap[i][j]->getType().compare("rural") == 0) {
+					fs << "0 255 0" << "	";
+				}
+			}
 		}
-
-		//fwrite(bmppad, 1, (4 - (m_size * 3) % 4) % 4, fs);
-		unsigned char* tempBmpChar = bmppad;
-		for (int j = 0; j < ((4 - (m_size * 3) % 4) % 4); ++j) {
-			fs << tempChar;
-			tempBmpChar++;
-		}
+		fs << std::endl;
 	}
-
-	free(img);
 	fs.close();
 }
 
-//void GameMap::calculateWeights() {
-//	//keep list of all explored and unexplored tiles, finish when all tiles explored
-//	//add all unusable (boundary/city/town) tiles to explored, the rest to unexplored
-//	//add first tile to unvisited, use two while loops to maintain search of current reachable tiles and all tiles
-//	//find neighbours, add to unvisited if not in visited, check to see if adj tile has the minimum weight of all neighbours
-//	//update current tile weight to be min adj weight plus one
-//	//add tile to visited/explored, and remove from unexplored, already removed from visited at start of loop
-//	//if we have visited all adjacent tiles, but there are still unexplored tiles we grab the next one add to unvisited and start again
-//	std::vector<MapTile*> visited, explored;
-//	std::list<MapTile*> unvisited, unexplored;
-//	for (int i = 0; i < m_size; ++i) {
-//		for (int j = 0; j < m_size; ++j) {
-//			if (m_currentWeights[i][j] == -1) {
-//				if (!TileIsInVector(m_gameMap[i][j], explored)) {
-//					explored.push_back(m_gameMap[i][j]);
-//				}
-//			}
-//			else {
-//				if (!TileIsInList(m_gameMap[i][j], unexplored)) {
-//					unexplored.push_back(m_gameMap[i][j]);
-//				}
-//			}
-//		}
-//	}
-//
-//	MapTile* current = m_gameMap[0][0];
-//	unvisited.push_back(current);
-//	while (!unexplored.empty()) {
-//		while (!unvisited.empty()) {
-//			current = unvisited.front();
-//			unvisited.pop_front();
-//
-//			int minAdjWeight = INT_MAX;
-//			int newWeight = -1;
-//			std::vector<MapTile*> neigh = getNeighbouringTiles(current, true);
-//			for (int i = 0; i < neigh.size(); ++i) {
-//				MapTile* tempTile = neigh.at(i);
-//				if (TileIsInVector(tempTile, explored)) {
-//					if (m_currentWeights[tempTile->getX()][tempTile->getY()] < minAdjWeight) {
-//						minAdjWeight = m_currentWeights[tempTile->getX()][tempTile->getY()];
-//					}
-//				}
-//				//if tile isnt visited
-//				//if ((!TileIsInList(tempTile, unvisited)) && (!TileIsInList(tempTile, unexplored))) {
-//				if ((!TileIsInVector(tempTile, visited)) && (!TileIsInList(tempTile, unvisited))) {
-//					unvisited.push_back(tempTile);
-//				}
-//			}
-//
-//			if (minAdjWeight != INT_MAX) {
-//				newWeight = minAdjWeight + 1;
-//				if (m_currentWeights[current->getX()][current->getY()] != -1) {
-//					m_currentWeights[current->getX()][current->getY()] = newWeight;
-//				}
-//			}
-//			else {
-//				std::cerr << "error getting next town - could not find adjacent unvisited tile" << std::endl;
-//			}
-//
-//			if (!TileIsInVector(current, visited)) {
-//				visited.push_back(current);
-//			}
-//			if (!TileIsInVector(current, explored)) {
-//				explored.push_back(current);
-//			}
-//			unexplored.remove(current);
-//		}
-//		//scan from new spot
-//		if (!unexplored.empty()) {
-//			MapTile* newSpot = unexplored.front();
-//			if (!TileIsInList(newSpot, unvisited)) {
-//				unvisited.push_back(newSpot);
-//			}
-//		}
-//	}
-//}
+std::string getDateTimeNow() {
+	std::chrono::system_clock::time_point p = std::chrono::system_clock::now();
+	std::time_t t = std::chrono::system_clock::to_time_t(p);
+	return std::ctime(&t);
+}
 
-//bool GameMap::TileIsInList(MapTile* tile, std::list<MapTile*> queue) {
-//	
-//	std::list<MapTile*>::iterator it;
-//	for (it = queue.begin(); it != queue.end(); ++it) {
-//		if ((tile->getX() == (*it)->getX()) && (tile->getY() == (*it)->getY())) {
-//			return true;
-//		}
-//	}
-//	return false;
-//}
-
-//std::list<MapTile*> GameMap::removeTileFromList(std::list<MapTile*> original, MapTile* tile) {
-//	std::list<MapTile*> newList;
-//	std::copy(original.begin(), original.end(), std::back_inserter(newList));
-//	std::list<MapTile*>::iterator finder = std::find(original.begin(), original.end(), tile);
-//	newList.splice(newList.end(), newList, finder);
-//	newList.pop_back();
-//	return newList;
-//}
-
-//std::vector<MapTile*> GameMap::removeTileFromVector(std::vector<MapTile*> original, MapTile* tile) {
-//	std::vector<MapTile*> newVector;
-//	std::copy(original.begin(), original.end(), std::back_inserter(newVector));
-//	newVector.erase(std::remove(newVector.begin(), newVector.end(), tile), newVector.end());
-//	return newVector;
-//}
-
-//bool GameMap::TileIsInVector(MapTile* tile, std::vector<MapTile*> queue) {
-//	for (int i = 0; i < queue.size(); ++i) {
-//		if ((tile->getX() == queue.at(i)->getX()) && (tile->getY() == queue.at(i)->getY())) {
-//			return true;
-//		}
-//	}
-//	return false;
-//}
 /*
 int main(int ac, char** av) {
 	std::srand(time(0));
