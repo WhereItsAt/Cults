@@ -76,10 +76,6 @@ int MapTile::peekY() const {
 	return m_y;
 }
 
-void MapTile::printTile() {
-	std::cout << m_stringType << "-(" << m_x << "," << m_y << ")";
-}
-
 TileType::t_tileType MapTile::getTileType() {
 	return m_type;
 }
@@ -128,4 +124,9 @@ bool MapTile::operator<(const MapTile& rhs) const
 bool MapTile::operator==(const MapTile& rhs) const
 {
 	return ((m_x == rhs.peekX()) && (m_y == rhs.peekY()));
+}
+
+std::string MapTile::toString()
+{
+	return ("type: " + m_stringType + ". has road: " + (m_hasRoad ? "true " : "false ") + ". at: (" + std::to_string(m_x) + "," + std::to_string(m_y) + ")");
 }

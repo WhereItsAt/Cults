@@ -34,13 +34,14 @@ public:
 	int peekY() const;
 	int getWeight();
 	void setWeight(int weight);
-	void printTile();
 	void setTileType(TileType::t_tileType tt);
 	TileType::t_tileType translateStringToType(std::string type);
 	std::string translateTypeToString(TileType::t_tileType type);
 	TileType::t_tileType getTileType();
 	bool operator<(const MapTile& rhs) const;
 	bool operator==(const MapTile & rhs) const;
+
+	std::string toString();
 
 private:
 	int m_x;

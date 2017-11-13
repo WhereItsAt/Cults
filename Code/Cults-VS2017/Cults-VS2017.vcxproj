@@ -134,6 +134,7 @@
     <ClCompile Include="City.cpp" />
     <ClCompile Include="nameByCountry.cpp" />
     <ClCompile Include="OptionsForm.cpp.cc" />
+    <ClCompile Include="PathNode.cpp" />
     <ClCompile Include="Policy.cpp" />
     <ClCompile Include="PoliticalParty.cpp" />
     <ClCompile Include="Politician.cpp" />
@@ -275,6 +276,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
     </CustomBuild>
+    <ClInclude Include="PathNode.h" />
     <ClInclude Include="Policy.h" />
     <ClInclude Include="PoliticalParty.h" />
     <ClInclude Include="Politician.h" />
