@@ -34,7 +34,13 @@ public:
 	void printOnly(std::string type);
 	void generateCity();
 	void reduceCity();
+	void fillCity(std::list<MapTile*> boundary, MapTile * startPosition);
 	void generateCityBoundaries();
+	std::vector<MapTile*> selectCityBoundaryPoints(MapTile * start, MapTile * end);
+	std::list<MapTile*> recursivePathSolution(MapTile * start, MapTile * end, int threshold, int moveRange);
+	MapTile * getMidPoint(MapTile * start, MapTile * end);
+	std::vector<MapTile*> voroniDiagramSolution(MapTile * start, MapTile * end);
+	std::vector<MapTile*> bezierCurveSolution(MapTile * start, MapTile * end);
 	void generateTown(MapTile* center, int size);
 	std::unordered_set<MapTile*> getTilesWithWeight(int weight, bool findMax);
 	std::unordered_set<MapTile*> getTilesWithWeight(int weight, bool findMax, std::unordered_set<MapTile*> tiles);
@@ -55,15 +61,16 @@ public:
 	MapTile * getTileAt(int x, int y);
 	void initializeGameMap(int size);
 	std::vector<MapTile*> getNeighbouringTiles(MapTile* tile, bool startOnTileBelow = true);
+	std::vector<MapTile*> getNonDiagonallyAdjacentNeighbours(MapTile * tile);
 	void initialiseWeights();
 	void calculateWeights();
 	int getRandomNumber(int min, int max);
 
 private:
 	int m_size;
-	const int m_defaultSize = 25;
-	const int m_townMinSize = 15;
-	const int m_townMaxSize = 35;
+	const int m_defaultSize = 50;
+	int m_townMinSize;
+	int m_townMaxSize;
 	std::vector< std::vector<MapTile*> > m_gameMap;
 	int m_totalTiles;
 	int m_cityTileMax;
@@ -79,8 +86,9 @@ private:
 	MapTile* m_citySouthVertex;
 	MapTile* m_cityWestVertex;
 	MapTile* m_cityEastVertex;
+	int m_pathThreshold = 5;
+	int m_moveRange = 3;
 
 };
 
 #endif /* GAMEMAP_H */
-

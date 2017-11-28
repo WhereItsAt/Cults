@@ -168,7 +168,7 @@
       <Filter>Source Files\Map</Filter>
     </ClCompile>
     <ClCompile Include="PathNode.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
