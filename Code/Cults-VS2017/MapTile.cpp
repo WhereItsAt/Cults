@@ -53,6 +53,16 @@ void MapTile::setRoad(bool road) {
 	m_hasRoad = road;
 }
 
+bool MapTile::hasRiver()
+{
+	return m_hasRiver;
+}
+
+void MapTile::setRiver(bool river)
+{
+	m_hasRiver = river;
+}
+
 int MapTile::getX() {
 	return m_x;
 }

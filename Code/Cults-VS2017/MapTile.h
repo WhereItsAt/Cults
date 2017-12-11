@@ -28,6 +28,8 @@ public:
 	void setType(std::string type);
 	bool hasRoad();
 	void setRoad(bool road);
+	bool hasRiver();
+	void setRiver(bool river);
 	int getX();
 	int getY();
 	int peekX() const;
@@ -48,6 +50,7 @@ private:
 	int m_y;
 	int m_weight;
 	bool m_hasRoad;
+	bool m_hasRiver;
 	std::string m_stringType;
 	TileType::t_tileType m_type;
 };
