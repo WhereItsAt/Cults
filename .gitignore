@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Code/.vs/Cults-VS2017/v15/Solution.VC.db-wal
+/Code/.vs/Cults-VS2017/v15/Solution.VC.db-shm
+/Code/.vs/Cults-VS2017/v15/Solution.VC.db
+/Code/.vs/Cults-VS2017/v15/.suo

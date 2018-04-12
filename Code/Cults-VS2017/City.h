@@ -1,30 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+#pragma once
+#include <list>
+#include <unordered_set>
+#include <vector>
+#include "MapTile.h"
+#include "MapUtilities.h"
 
-/* 
- * File:   City.h
- * Author: scott
- *
- * Created on 10 June 2017, 9:55 PM
- */
-
-#ifndef CITY_H
-#define CITY_H
-
-#include "Zone.h"
-
-class City: public Zone {
+class City
+{
 public:
-    City();
-    City(const City& orig);
-    virtual ~City();
-    virtual std::string getType();
+	City();
+	City(std::vector< std::vector<MapTile*> > * gameMap, MapUtilities* controller);
+	~City();
+	void generateCityAxis();
+	void generateCity();
+	void fillCity(MapTile * startPosition);
+	void generateCityBoundaries();
+	std::list<MapTile*> recursivePathSolution(MapTile * start, MapTile * end, int threshold, int moveRange, int quadrant);
+	int getCityTileCount();
+	void generateRoads(int numPoints);
 private:
-
+	std::vector< std::vector<MapTile*> > * m_map;
+	std::list<MapTile*> m_boundary;
+	std::unordered_set<MapTile*> m_cityTiles;
+	MapTile* m_cityCenter;
+	MapTile* m_northVertex;
+	MapTile* m_eastVertex;
+	MapTile* m_southVertex;
+	MapTile* m_westVertex;
+	int m_pathThreshold = 5;
+	int m_moveRange = 3;
+	MapUtilities* m_mapController;
+	int m_numberOfVoroniPoints = 7;
 };
-
-#endif /* CITY_H */
 

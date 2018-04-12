@@ -132,6 +132,8 @@
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="City.cpp" />
+    <ClCompile Include="MapUtilities.cpp" />
+    <ClCompile Include="Mountain.cpp" />
     <ClCompile Include="nameByCountry.cpp" />
     <ClCompile Include="OptionsForm.cpp.cc" />
     <ClCompile Include="PathNode.cpp" />
@@ -142,12 +144,14 @@
     <ClCompile Include="RegionalZone.cpp" />
     <ClCompile Include="Religion.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="River.cpp" />
     <ClCompile Include="SafeHouse.cpp" />
     <ClCompile Include="Specialist.cpp" />
     <ClCompile Include="Spy.cpp" />
     <ClCompile Include="StatusManager.cpp" />
     <ClCompile Include="StoryEvent.cpp" />
     <ClCompile Include="Suburb.cpp" />
+    <ClCompile Include="Town.cpp" />
     <ClCompile Include="UniqueFollower.cpp" />
     <ClCompile Include="Zone.cpp" />
     <ClCompile Include="ZoneManager.cpp" />
@@ -255,6 +259,8 @@
     <ClInclude Include="Manager.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="City.h" />
+    <ClInclude Include="MapUtilities.h" />
+    <ClInclude Include="Mountain.h" />
     <ClInclude Include="nameByCountry.h" />
     <CustomBuild Include="OptionsForm.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Alternate|x64'">
@@ -284,6 +290,7 @@
     <ClInclude Include="RegionalZone.h" />
     <ClInclude Include="Religion.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="River.h" />
     <ClInclude Include="SafeHouse.h" />
     <ClInclude Include="Specialist.h" />
     <ClInclude Include="Spy.h" />
@@ -291,6 +298,7 @@
     <ClInclude Include="StoryEvent.h" />
     <ClInclude Include="Suburb.h" />
     <ClInclude Include="TileType.h" />
+    <ClInclude Include="Town.h" />
     <ClInclude Include="ui_MainMenuForm.h" />
     <ClInclude Include="ui_OptionsForm.h" />
     <ClInclude Include="UniqueFollower.h" />

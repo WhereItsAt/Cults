@@ -15,6 +15,11 @@
 #define GAMEMAP_H
 
 #include "MapTile.h"
+#include "River.h"
+#include "Mountain.h"
+#include "City.h"
+#include "Town.h"
+#include "MapUtilities.h"
 #include <vector>
 #include <string>
 #include <set>
@@ -27,52 +32,22 @@ public:
 	GameMap(int size);
 	GameMap(const GameMap& orig);
 	virtual ~GameMap();
-	void printMap();
-	MapTile* getMiddle();
-	void generateCityCenter();
+	//overall map functions
 	void generateMap();
-	void printOnly(std::string type);
-	void generateCity();
-	void reduceCity();
-	void fillCity(std::list<MapTile*> boundary, MapTile * startPosition);
-	void generateCityBoundaries();
-	std::vector<MapTile*> selectCityBoundaryPoints(MapTile * start, MapTile * end);
-	std::list<MapTile*> recursivePathSolution(MapTile * start, MapTile * end, int threshold, int moveRange, int quadrant);
-	MapTile * getMidPoint(MapTile * start, MapTile * end);
-	std::vector<MapTile*> voroniDiagramSolution(MapTile * start, MapTile * end);
+	void setRuralArea();
+	void initializeGameMap(int size);
+	int getSize();
+	std::vector< std::vector<MapTile*> >* getMap();	
+	MapUtilities * getController();
+	//town functions
+	void generateAllTowns();
+	//feature functions
 	void generateRivers(int numberOfRivers, int minDistance);
+	void generateMountains(int numberOfMountains);
 	std::list<MapTile*> generateBezierCurve(MapTile * start, MapTile * end, bool quadratic);
-	int getRandomNumberInRangePositiveOrNegative(int num1, int num2, float chanceToFlip);
 	std::list<MapTile*> quadraticBezier(MapTile * p1, MapTile * p2, MapTile * p3);
 	std::list<MapTile*> cubicBezier(MapTile * p1, MapTile * p2, MapTile * p3, MapTile * p4);
-	//std::vector<MapTile*> getRiverPoints(int minDistance);
-	MapTile * getRandomBoundaryTile(int edge, int minDistance);
-	MapTile * getRandomTileInRange(MapTile * tile, int range);
-	int getStartingPointShiftValue(int startEdge, int endEdge, MapTile * start, int minDistance);
-	void generateTown(MapTile* center, int size);
-	std::unordered_set<MapTile*> getTilesWithWeight(int weight, bool findMax);
-	std::unordered_set<MapTile*> getTilesWithWeight(int weight, bool findMax, std::unordered_set<MapTile*> tiles);
-	int getManhattanDistance(MapTile * a, MapTile * b);
-	void generateAllTowns();
-	void test();
-	std::list<MapTile*> aStar(MapTile * start, MapTile * end);
-	double getEuclideanDistance(MapTile * a, MapTile * b);
-	int getDiagonalDistance(MapTile * a, MapTile * b);
-	void countTilesFor(std::string type);
-	MapTile * getNextTownCenter();
-	void setRuralArea();
-	void PrintToFile(std::string output);
-	void visualiseMapAsPpm();
-	void visualiseMapWithPathAsPpm(MapTile * start, MapTile * end, std::list<MapTile*> path);
-	std::string getDateTimeNow();
-	void printPath(std::list<MapTile*> path);
-	MapTile * getTileAt(int x, int y);
-	void initializeGameMap(int size);
-	std::vector<MapTile*> getNeighbouringTiles(MapTile* tile, bool startOnTileBelow = true);
-	std::vector<MapTile*> getNonDiagonallyAdjacentNeighbours(MapTile * tile);
-	void initialiseWeights();
-	void calculateWeights();
-	int getRandomNumber(int min, int max);
+	std::vector<MapTile*> voroniDiagramSolution(MapTile * start, MapTile * end);
 
 private:
 	int m_size;
@@ -82,21 +57,15 @@ private:
 	std::vector< std::vector<MapTile*> > m_gameMap;
 	int m_totalTiles;
 	int m_cityTileMax;
-	int m_cityTileCount;
 	int m_townTileMax;
-	int m_townTileCount;
-	int m_totalTownCount;
 	int m_ruralTileCount;
 	int m_maxTowns;
 	int m_minTowns;
-	MapTile* m_cityCenter;
-	MapTile* m_cityNorthVertex;
-	MapTile* m_citySouthVertex;
-	MapTile* m_cityWestVertex;
-	MapTile* m_cityEastVertex;
-	int m_pathThreshold = 5;
-	int m_moveRange = 3;
-
+	std::vector<River*> m_rivers;
+	std::vector<Mountain*> m_mountains;
+	std::vector<Town*> m_towns;
+	City* m_city;
+	MapUtilities* m_mapController;
 };
 
 #endif /* GAMEMAP_H */

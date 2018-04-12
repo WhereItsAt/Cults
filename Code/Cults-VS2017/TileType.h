@@ -3,7 +3,7 @@
 
 class TileType {
 	public:
-		enum t_tileType {Blank, City, Town, Rural};
+		enum t_tileType {Blank, City, Town, Rural, Mountain};
 
 };
 

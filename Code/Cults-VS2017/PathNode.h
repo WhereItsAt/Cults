@@ -17,5 +17,5 @@ public:
 	PathNode* previous;
 
 private:
-
+	
 };
